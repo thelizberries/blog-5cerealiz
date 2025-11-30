@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Blog 5Cerealiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            border: 5px solid #2C3E50;
+            box-shadow: 8px 8px 0px #2C3E50;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-bottom: 5px solid #2C3E50;
+            position: relative;
+        }
+        
+        header h1 {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 8px;
+            text-shadow: 4px 4px 0 #2C3E50;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        header p {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 1.2em;
+            color: #FFC425;
+            text-shadow: 2px 2px 0 #2C3E50;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: calc(100vh - 250px);
+        }
+        
+        .editor-panel {
+            padding: 30px;
+            border-right: 4px solid #2C3E50;
+            overflow-y: auto;
+            max-height: calc(100vh - 250px);
+        }
+        
+        .preview-panel {
+            padding: 30px;
+            background: #FFFEF9;
+            overflow-y: auto;
+            max-height: calc(100vh - 250px);
+        }
+        
+        .section-title {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #FF6B35;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #FFC425;
+            text-shadow: 2px 2px 0 rgba(44, 62, 80, 0.1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #2C3E50;
+            font-size: 1em;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="file"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 3px solid #2C3E50;
+            border-radius: 10px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #FF6B35;
+            box-shadow: 4px 4px 0 rgba(255, 107, 53, 0.2);
+            transform: translate(-2px, -2px);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 250px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.6;
+        }
+        
+        .image-preview {
+            margin-top: 10px;
+            border: 3px dashed #2C3E50;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            background: #FFF8E7;
+        }
+        
+        .image-preview img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 10px;
+            margin-top: 10px;
+            border: 3px solid #2C3E50;
+        }
+        
+        .image-preview.has-image {
+            border-color: #28a745;
+            background: #f0f9f4;
+        }
+        
+        .toolbar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .toolbar button {
+            padding: 10px 15px;
+            background: #FFC425;
+            border: 3px solid #2C3E50;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            transition: all 0.2s;
+            box-shadow: 3px 3px 0 #2C3E50;
+        }
+        
+        .toolbar button:hover {
+            background: #FFD54F;
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0 #2C3E50;
+        }
+        
+        .toolbar button:active {
+            transform: translate(1px, 1px);
+            box-shadow: 2px 2px 0 #2C3E50;
+        }
+        
+        .publish-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(247, 147, 30, 0.1) 100%);
+            border-radius: 15px;
+            border: 4px solid #FF6B35;
+        }
+        
+        .publish-section h3 {
+            margin-bottom: 20px;
+            color: #FF6B35;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 1.3em;
+            text-shadow: 1px 1px 0 rgba(44, 62, 80, 0.1);
+        }
+        
+        .publish-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            border: 4px solid #2C3E50;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: bold;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 5px 5px 0 #2C3E50;
+            text-shadow: 2px 2px 0 rgba(44, 62, 80, 0.3);
+        }
+        
+        .publish-btn:hover:not(:disabled) {
+            transform: translate(-2px, -2px);
+            box-shadow: 7px 7px 0 #2C3E50;
+        }
+        
+        .publish-btn:active:not(:disabled) {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 #2C3E50;
+        }
+        
+        .publish-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .preview-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 4px solid #2C3E50;
+            box-shadow: 4px 4px 0 #2C3E50;
+        }
+        
+        .preview-content h1 {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #FF6B35;
+            margin-bottom: 15px;
+            line-height: 1.3;
+            text-shadow: 2px 2px 0 rgba(255, 196, 37, 0.3);
+        }
+        
+        .preview-content .post-meta {
+            color: #666;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px dashed #2C3E50;
+            font-size: 1em;
+            font-weight: 600;
+        }
+        
+        .preview-content .post-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border: 4px solid #2C3E50;
+            box-shadow: 4px 4px 0 #2C3E50;
+        }
+        
+        .preview-content .post-body {
+            line-height: 1.8;
+            color: #2C3E50;
+        }
+        
+        .preview-content .post-body h2 {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #FF6B35;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #FFC425;
+            padding-bottom: 10px;
+            text-shadow: 1px 1px 0 rgba(255, 196, 37, 0.3);
+        }
+        
+        .preview-content .post-body h3 {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: #F7931E;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            font-size: 1.4em;
+        }
+        
+        .preview-content .post-body p {
+            margin-bottom: 18px;
+        }
+        
+        .preview-content .post-body ul,
+        .preview-content .post-body ol {
+            margin-left: 30px;
+            margin-bottom: 18px;
+        }
+        
+        .preview-content .post-body li {
+            margin-bottom: 10px;
+        }
+        
+        .preview-content .post-body strong {
+            font-weight: 700;
+            color: #FF6B35;
+        }
+        
+        .preview-content .post-body em {
+            font-style: italic;
+        }
+        
+        .preview-content .post-body a {
+            color: #FF6B35;
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px dotted #FF6B35;
+        }
+        
+        .preview-content .post-body a:hover {
+            border-bottom-style: solid;
+        }
+        
+        .help-text {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 8px;
+            font-style: italic;
+        }
+        
+        .alert {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 3px solid;
+            font-weight: 600;
+        }
+        
+        .alert-info {
+            background: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        
+        .alert-success {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        
+        .alert-error {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #FFF8E7;
+            border-top: 4px solid #FF6B35;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .editor-panel {
+                border-right: none;
+                border-bottom: 4px solid #2C3E50;
+            }
+            
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 Editor Blog 5Cerealiz</h1>
+            <p>La Cartoon Band - Crea e Pubblica</p>
+        </header>
+        
+        <div class="main-content">
+            <!-- PANNELLO EDITOR -->
+            <div class="editor-panel">
+                <h2 class="section-title">✏️ Scrivi il tuo Post</h2>
+                
+                <div class="alert alert-info">
+                    <strong>💡 Come funziona:</strong> Compila i campi, vedi l'anteprima in tempo reale. Quando sei pronto, inserisci la password e pubblica!
+                </div>
+                
+                <!-- UPLOAD IMMAGINE -->
+                <div class="form-group">
+                    <label for="image">📸 Immagine del Post (opzionale)</label>
+                    <input type="file" id="image" accept="image/jpeg,image/jpg,image/png">
+                    <div class="image-preview" id="imagePreview">
+                        <p style="color: #999;">Seleziona un'immagine per vedere l'anteprima</p>
+                    </div>
+                    <p class="help-text">Formati: JPG, PNG. L'immagine verrà ottimizzata automaticamente (max 900x600px, WebP ~30-40KB)</p>
+                </div>
+                
+                <!-- METADATI POST -->
+                <div class="form-group">
+                    <label for="title">📌 Titolo del Post *</label>
+                    <input type="text" id="title" placeholder="es: Nuova Puntata della Serie!" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date">📅 Data di Pubblicazione *</label>
+                    <input type="date" id="date" required>
+                    <p class="help-text">⏰ Puoi impostare una data futura per programmare la pubblicazione</p>
+                </div>
+                
+                <!-- EDITOR CONTENUTO -->
+                <div class="form-group">
+                    <label for="content">✍️ Contenuto del Post *</label>
+                    <div class="toolbar">
+                        <button type="button" onclick="insertMarkdown('**', '**')" title="Grassetto"><strong>B</strong></button>
+                        <button type="button" onclick="insertMarkdown('*', '*')" title="Corsivo"><em>I</em></button>
+                        <button type="button" onclick="insertMarkdown('## ', '')" title="Titolo H2">H2</button>
+                        <button type="button" onclick="insertMarkdown('### ', '')" title="Titolo H3">H3</button>
+                        <button type="button" onclick="insertMarkdown('[', '](url)')" title="Link">🔗 Link</button>
+                        <button type="button" onclick="insertMarkdown('- ', '')" title="Lista">• Lista</button>
+                        <button type="button" onclick="insertMarkdown('<!--more-->\n\n', '')" title="Separa anteprima">✂️ Anteprima</button>
+                    </div>
+                    <textarea id="content" placeholder="Scrivi qui il contenuto del post usando Markdown...
+
+Esempio:
+Siamo entusiasti di annunciare una nuova puntata della nostra serie cartoon!
+
+<!--more-->
+
+La **puntata 5** sarà disponibile a partire dal **15 dicembre 2025** sul nostro canale YouTube.
+
+## Cosa Aspettarsi
+
+- Nuove avventure musicali
+- Personaggi divertenti  
+- Tanto ritmo e colore!
+
+Non vediamo l'ora di condividerla con voi! 🎵🎨"></textarea>
+                    <p class="help-text">
+                        💡 Usa <code>&lt;!--more--&gt;</code> per separare l'anteprima dal resto del contenuto. <br>
+                        Usa <strong>**testo**</strong> per grassetto, <em>*testo*</em> per corsivo, <code>## Titolo</code> per i titoli.
+                    </p>
+                </div>
+                
+                <!-- SEZIONE PUBBLICAZIONE -->
+                <div class="publish-section">
+                    <h3>🚀 Pubblica</h3>
+                    <div class="form-group">
+                        <label for="password">🔐 Password</label>
+                        <input type="password" id="password" placeholder="Inserisci la password per pubblicare">
+                    </div>
+                    
+                    <div id="loading" class="loading">
+                        <div class="spinner"></div>
+                        <p>Pubblicazione in corso...</p>
+                    </div>
+                    
+                    <div id="message"></div>
+                    
+                    <button class="publish-btn" id="publishBtn" onclick="publishPost()">
+                        📤 Pubblica Post
+                    </button>
+                </div>
+            </div>
+            
+            <!-- PANNELLO PREVIEW -->
+            <div class="preview-panel">
+                <h2 class="section-title">👁️ Anteprima</h2>
+                
+                <div class="preview-content" id="previewContent">
+                    <h1 id="previewTitle">Titolo del Post</h1>
+                    <div class="post-meta">
+                        📅 <span id="previewDate">--/--/----</span>
+                    </div>
+                    <img id="previewImage" class="post-image" style="display: none;" src="" alt="">
+                    <div class="post-body" id="previewBody">
+                        <p style="color: #999; font-style: italic;">L'anteprima apparirà qui mentre scrivi...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // CONFIGURAZIONE
+        const CLOUDFLARE_WORKER_URL = 'https://5cerealiz-blog-upload.5cerealiz.workers.dev';
+        
+        // Auto-update preview
+        document.getElementById('title').addEventListener('input', updatePreview);
+        document.getElementById('date').addEventListener('change', updatePreview);
+        document.getElementById('content').addEventListener('input', updatePreview);
+        
+        // Variabile per salvare il file immagine
+        let selectedImageFile = null;
+        let selectedImageName = null;
+        
+        // Image preview
+        document.getElementById('image').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                selectedImageFile = file;
+                selectedImageName = file.name.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const preview = document.getElementById('imagePreview');
+                    preview.innerHTML = `
+                        <p style="color: #28a745; font-weight: bold;">✅ Immagine selezionata</p>
+                        <p style="font-size: 0.9em;">${file.name} (${(file.size / 1024).toFixed(1)} KB)</p>
+                        <img src="${e.target.result}" alt="Preview">
+                        <p style="font-size: 0.85em; color: #666; margin-top: 10px;">Verrà caricata come: ${selectedImageName}</p>
+                    `;
+                    preview.classList.add('has-image');
+                    
+                    // Update preview panel
+                    const previewImg = document.getElementById('previewImage');
+                    previewImg.src = e.target.result;
+                    previewImg.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                selectedImageFile = null;
+                selectedImageName = null;
+                document.getElementById('previewImage').style.display = 'none';
+            }
+        });
+        
+        function updatePreview() {
+            const title = document.getElementById('title').value || 'Titolo del Post';
+            const date = document.getElementById('date').value;
+            const content = document.getElementById('content').value;
+            
+            // Update title
+            document.getElementById('previewTitle').textContent = title;
+            
+            // Update date
+            if (date) {
+                const dateObj = new Date(date + 'T00:00:00');
+                const formatted = dateObj.toLocaleDateString('it-IT', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                document.getElementById('previewDate').textContent = formatted;
+            }
+            
+            // Update content (basic markdown rendering)
+            if (content) {
+                let html = content
+                    // Headers
+                    .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                    .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                    // Bold
+                    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                    // Italic
+                    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+                    // Links
+                    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+                    // Lists
+                    .replace(/^- (.+)$/gm, '<li>$1</li>');
+                
+                // Wrap paragraphs
+                html = html.split('\n\n').map(p => {
+                    p = p.trim();
+                    if (!p) return '';
+                    if (p.startsWith('<h') || p.startsWith('<li>') || p.includes('<!--more-->')) return p;
+                    return `<p>${p}</p>`;
+                }).join('\n');
+                
+                // Wrap lists
+                html = html.replace(/(<li>.*<\/li>\n?)+/g, '<ul>$&</ul>');
+                
+                // Handle <!--more--> separator
+                if (html.includes('<!--more-->')) {
+                    const parts = html.split('<!--more-->');
+                    html = parts[0] + 
+                           '<hr style="margin: 30px 0; border: 3px solid #FFC425; border-radius: 5px;">' +
+                           '<p style="color: #FF6B35; font-style: italic; font-weight: bold; font-family: \'Comic Sans MS\', cursive;">↓ Contenuto completo ↓</p>' +
+                           parts[1];
+                }
+                
+                document.getElementById('previewBody').innerHTML = html;
+            } else {
+                document.getElementById('previewBody').innerHTML = 
+                    '<p style="color: #999; font-style: italic;">L\'anteprima apparirà qui mentre scrivi...</p>';
+            }
+        }
+        
+        function insertMarkdown(before, after) {
+            const textarea = document.getElementById('content');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const text = textarea.value;
+            const selectedText = text.substring(start, end);
+            
+            const newText = text.substring(0, start) + 
+                           before + selectedText + after + 
+                           text.substring(end);
+            
+            textarea.value = newText;
+            textarea.focus();
+            textarea.selectionStart = start + before.length;
+            textarea.selectionEnd = start + before.length + selectedText.length;
+            
+            updatePreview();
+        }
+        
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64 = reader.result.split(',')[1];
+                    resolve(base64);
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+        }
+        
+        function slugify(text) {
+            return text.toLowerCase()
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Remove accents
+                .replace(/[^a-z0-9]+/g, '-') // Replace non-alphanumeric with -
+                .replace(/^-+|-+$/g, ''); // Remove leading/trailing -
+        }
+        
+        async function publishPost() {
+            const password = document.getElementById('password').value;
+            const title = document.getElementById('title').value;
+            const date = document.getElementById('date').value;
+            const content = document.getElementById('content').value;
+            
+            // Validation
+            if (!password) {
+                showMessage('Inserisci la password', 'error');
+                return;
+            }
+            if (!title) {
+                showMessage('Inserisci il titolo del post', 'error');
+                return;
+            }
+            if (!date) {
+                showMessage('Seleziona la data di pubblicazione', 'error');
+                return;
+            }
+            if (!content) {
+                showMessage('Scrivi il contenuto del post', 'error');
+                return;
+            }
+            
+            // Disable button and show loading
+            const publishBtn = document.getElementById('publishBtn');
+            publishBtn.disabled = true;
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('message').innerHTML = '';
+            
+            try {
+                let imageWebpName = null;
+                
+                // Step 1: Upload image if selected
+                if (selectedImageFile) {
+                    showMessage('Caricamento immagine...', 'info');
+                    
+                    const imageBase64 = await fileToBase64(selectedImageFile);
+                    const imageResponse = await fetch(CLOUDFLARE_WORKER_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            action: 'upload_image',
+                            password: password,
+                            filename: selectedImageFile.name,
+                            fileContent: imageBase64
+                        })
+                    });
+                    
+                    const imageData = await imageResponse.json();
+                    if (!imageResponse.ok || !imageData.success) {
+                        throw new Error(imageData.error || 'Errore nel caricamento dell\'immagine');
+                    }
+                    
+                    imageWebpName = imageData.webpName;
+                }
+                
+                // Step 2: Create post
+                showMessage('Creazione post...', 'info');
+                
+                const postFilename = `${date}-${slugify(title)}.md`;
+                
+                // Build front matter
+                let frontMatter = `---\nlayout: post\ntitle: "${title}"\ndate: ${date}\n`;
+                if (imageWebpName) {
+                    frontMatter += `image: /assets/images/posts/${imageWebpName}\n`;
+                }
+                frontMatter += `---\n\n`;
+                
+                const postContent = frontMatter + content;
+                
+                const postResponse = await fetch(CLOUDFLARE_WORKER_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        action: 'create_post',
+                        password: password,
+                        filename: postFilename,
+                        content: postContent
+                    })
+                });
+                
+                const postData = await postResponse.json();
+                if (!postResponse.ok || !postData.success) {
+                    throw new Error(postData.error || 'Errore nella creazione del post');
+                }
+                
+                // Success!
+                showMessage(
+                    `✅ <strong>Post pubblicato con successo!</strong><br><br>` +
+                    `📄 File: <code>${postFilename}</code><br>` +
+                    (imageWebpName ? `🖼️ Immagine: <code>${imageWebpName}</code><br>` : '') +
+                    `<br>⏳ Il post apparirà sul blog tra 1-2 minuti.`,
+                    'success'
+                );
+                
+                // Reset form
+                document.getElementById('title').value = '';
+                document.getElementById('date').value = new Date().toISOString().split('T')[0];
+                document.getElementById('content').value = '';
+                document.getElementById('image').value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('imagePreview').innerHTML = '<p style="color: #999;">Seleziona un\'immagine per vedere l\'anteprima</p>';
+                document.getElementById('imagePreview').classList.remove('has-image');
+                selectedImageFile = null;
+                selectedImageName = null;
+                updatePreview();
+                
+            } catch (error) {
+                console.error('Publish error:', error);
+                showMessage(`❌ <strong>Errore:</strong> ${error.message}`, 'error');
+            } finally {
+                publishBtn.disabled = false;
+                document.getElementById('loading').classList.remove('active');
+            }
+        }
+        
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="alert alert-${type}">${text}</div>`;
+        }
+        
+        // Set default date to today
+        document.getElementById('date').valueAsDate = new Date();
+        updatePreview();
+    </script>
+</body>
+</html>

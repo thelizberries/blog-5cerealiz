@@ -1,0 +1,58 @@
+name: Daily Backup
+
+on:
+  schedule:
+    # Ogni giorno alle 03:00 UTC (04:00/05:00 ora italiana)
+    - cron: '0 3 * * *'
+  workflow_dispatch:  # Permette esecuzione manuale
+
+permissions:
+  contents: write
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Scarica tutta la history
+      
+      - name: Create backup branch
+        run: |
+          # Nome del branch di backup con la data
+          BACKUP_BRANCH="backup/$(date +'%Y-%m-%d')"
+          
+          # Crea e pusha il branch di backup
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          git checkout -b "$BACKUP_BRANCH"
+          git push origin "$BACKUP_BRANCH"
+          
+          echo "✅ Backup creato: $BACKUP_BRANCH"
+      
+      - name: Delete old backups
+        run: |
+          # Mantieni solo gli ultimi 30 backup
+          git fetch --all
+          
+          # Lista tutti i branch backup ordinati per data (più vecchi prima)
+          BACKUP_BRANCHES=$(git branch -r | grep 'origin/backup/' | sed 's/origin\///' | sort)
+          
+          # Conta quanti backup ci sono
+          BACKUP_COUNT=$(echo "$BACKUP_BRANCHES" | wc -l)
+          
+          # Se ci sono più di 30 backup, elimina i più vecchi
+          if [ "$BACKUP_COUNT" -gt 30 ]; then
+            TO_DELETE=$((BACKUP_COUNT - 30))
+            echo "Trovati $BACKUP_COUNT backup, elimino i $TO_DELETE più vecchi..."
+            
+            echo "$BACKUP_BRANCHES" | head -n "$TO_DELETE" | while read branch; do
+              echo "Elimino $branch"
+              git push origin --delete "$branch"
+            done
+          else
+            echo "Trovati $BACKUP_COUNT backup, nessuna eliminazione necessaria"
+          fi

@@ -1,0 +1,12 @@
+# Files to ignore
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+.bundle/
+vendor/
+Gemfile.lock
+.DS_Store
+*.swp
+*.swo
+*~

@@ -1,0 +1,54 @@
+title: 5Cerealiz Blog
+description: Il blog ufficiale dei 5Cerealiz - Notizie, aggiornamenti e storie dalla cartoon band
+baseurl: ""
+url: "https://blog.5cerealiz.thelizards.it"
+
+# Autore
+author:
+  name: 5Cerealiz
+  email: info@thelizards.it
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+timezone: Europe/Rome
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:year/:month/:day/:title/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "5Cerealiz"
+
+# Exclude da build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .bundle
+  - .git
+  - .github
+  - README.md
+  - workers
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Feed
+feed:
+  path: feed.xml
+
+# SEO
+lang: it_IT

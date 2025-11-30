@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<div class="home">
+    <h1 class="page-title">{{ page.title }}</h1>
+    
+    {% if site.posts.size > 0 %}
+        <div class="posts-list">
+            {% for post in site.posts %}
+                <article class="post-card">
+                    {% if post.image %}
+                        <div class="post-image">
+                            <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
+                        </div>
+                    {% endif %}
+                    <div class="post-content">
+                        <h2 class="post-title">
+                            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+                        </h2>
+                        <div class="post-meta">
+                            <time datetime="{{ post.date | date_to_xmlschema }}">
+                                {{ post.date | date: "%d %B %Y" }}
+                            </time>
+                        </div>
+                        <div class="post-excerpt">
+                            {{ post.excerpt }}
+                        </div>
+                        <a href="{{ post.url | relative_url }}" class="read-more">Leggi tutto →</a>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="no-posts">Nessun articolo pubblicato ancora. Torna presto!</p>
+    {% endif %}
+</div>

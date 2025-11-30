@@ -1,0 +1,86 @@
+name: Convert Images to WebP
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'assets/images/posts/**.jpg'
+      - 'assets/images/posts/**.jpeg'
+      - 'assets/images/posts/**.png'
+
+permissions:
+  contents: write
+
+jobs:
+  convert-to-webp:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Install cwebp
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webp imagemagick
+      
+      - name: Convert images to WebP
+        run: |
+          # Trova tutte le immagini JPG/JPEG/PNG in assets/images/posts/
+          for img in assets/images/posts/*.{jpg,jpeg,png,JPG,JPEG,PNG}; do
+            # Salta se il pattern non matcha nessun file
+            [ -e "$img" ] || continue
+            
+            # Ottieni il nome base senza estensione
+            base=$(basename "$img" | sed 's/\.[^.]*$//')
+            dir=$(dirname "$img")
+            webp_file="$dir/$base.webp"
+            
+            # Salta se il file WebP esiste già
+            if [ -f "$webp_file" ]; then
+              echo "✓ $webp_file già esistente, skip"
+              continue
+            fi
+            
+            echo "Converting $img..."
+            
+            # Ridimensiona l'immagine se più grande di 900x600
+            convert "$img" -resize '900x600>' -quality 90 "/tmp/resized_$base.jpg"
+            
+            # Converti in WebP con qualità 75 e metodo 6 (miglior compressione)
+            cwebp -q 75 -m 6 "/tmp/resized_$base.jpg" -o "$webp_file"
+            
+            if [ $? -eq 0 ]; then
+              original_size=$(du -k "$img" | cut -f1)
+              webp_size=$(du -k "$webp_file" | cut -f1)
+              echo "✅ Creato $webp_file ($webp_size KB, originale: $original_size KB)"
+              
+              # Elimina il file originale
+              rm "$img"
+              echo "🗑️  Eliminato $img"
+            else
+              echo "❌ Errore nella conversione di $img"
+            fi
+            
+            # Pulisci il file temporaneo
+            rm -f "/tmp/resized_$base.jpg"
+          done
+      
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          # Aggiungi TUTTI i cambiamenti (incluse le eliminazioni)
+          git add -A
+          
+          if git diff --cached --quiet; then
+            echo "Nessuna immagine da convertire"
+          else
+            git pull --rebase origin main
+            git commit -m "Convert images to WebP and delete originals"
+            git push origin main
+          fi

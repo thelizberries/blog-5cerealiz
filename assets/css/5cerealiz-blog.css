@@ -1,0 +1,535 @@
+/* ===================================
+   5CEREALIZ BLOG - Stile Fumettoso
+   =================================== */
+
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Colori fumettosi e vivaci */
+    --primary-color: #FF6B35;        /* Arancione vibrante */
+    --secondary-color: #F7931E;      /* Arancione chiaro */
+    --accent-color: #FFC425;         /* Giallo cartoon */
+    --dark-color: #2C3E50;           /* Blu scuro */
+    --light-color: #FFF8E7;          /* Crema chiaro */
+    --bg-color: #FFFEF9;             /* Bianco sporco */
+    --border-color: #2C3E50;         /* Nero fumetto */
+    
+    /* Tipografia cartoon */
+    --font-heading: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', cursive, sans-serif;
+    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
+    /* Ombre fumetto */
+    --shadow-cartoon: 4px 4px 0px var(--border-color);
+    --shadow-hover: 6px 6px 0px var(--border-color);
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--dark-color);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===================================
+   HEADER - Stile Cartoon
+   =================================== */
+
+.site-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    border-bottom: 5px solid var(--border-color);
+    padding: 20px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.site-header::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.site-logo a {
+    text-decoration: none;
+    color: white;
+}
+
+.site-logo h1 {
+    font-family: var(--font-heading);
+    font-size: 3em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 
+        3px 3px 0 var(--border-color),
+        -1px -1px 0 var(--border-color),
+        1px -1px 0 var(--border-color),
+        -1px 1px 0 var(--border-color),
+        5px 5px 10px rgba(0,0,0,0.3);
+    margin: 0;
+    line-height: 1;
+    transform: rotate(-2deg);
+}
+
+.site-logo .tagline {
+    font-family: var(--font-heading);
+    font-size: 1.2em;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 0 var(--border-color);
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+.site-nav {
+    display: flex;
+    gap: 20px;
+}
+
+.site-nav a {
+    font-family: var(--font-heading);
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    border: 3px solid var(--border-color);
+    border-radius: 15px;
+    box-shadow: var(--shadow-cartoon);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.site-nav a:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hover);
+    background-color: #FFD54F;
+}
+
+.site-nav a:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--border-color);
+}
+
+/* ===================================
+   MAIN CONTENT
+   =================================== */
+
+main {
+    padding: 40px 0;
+    min-height: calc(100vh - 400px);
+}
+
+.page-title {
+    font-family: var(--font-heading);
+    font-size: 2.5em;
+    color: var(--primary-color);
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 0 var(--border-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ===================================
+   POST CARDS - Stile Fumetto
+   =================================== */
+
+.posts-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.post-card {
+    background-color: white;
+    border: 4px solid var(--border-color);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-cartoon);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.post-card::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, var(--accent-color) 30%, transparent 31%);
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.post-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 7px 7px 0px var(--border-color);
+}
+
+.post-image {
+    position: relative;
+    overflow: hidden;
+    height: 250px;
+    border-bottom: 3px solid var(--border-color);
+}
+
+.post-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.post-card:hover .post-image img {
+    transform: scale(1.05);
+}
+
+.post-content {
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.post-title {
+    font-family: var(--font-heading);
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.post-title a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.post-title a:hover {
+    color: var(--secondary-color);
+    text-shadow: 1px 1px 0 var(--accent-color);
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.post-excerpt {
+    margin-bottom: 20px;
+    color: var(--dark-color);
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary-color);
+    padding: 10px 25px;
+    border: 3px solid var(--border-color);
+    border-radius: 25px;
+    text-decoration: none;
+    box-shadow: 3px 3px 0 var(--border-color);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+
+.read-more:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 var(--border-color);
+    background-color: var(--secondary-color);
+}
+
+.read-more:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--border-color);
+}
+
+/* ===================================
+   SINGLE POST
+   =================================== */
+
+.post {
+    background-color: white;
+    border: 4px solid var(--border-color);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: var(--shadow-cartoon);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.post-header {
+    margin-bottom: 30px;
+    text-align: center;
+    border-bottom: 3px dashed var(--border-color);
+    padding-bottom: 20px;
+}
+
+.post-header .post-title {
+    font-family: var(--font-heading);
+    font-size: 2.5em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-shadow: 2px 2px 0 var(--accent-color);
+    line-height: 1.2;
+}
+
+.post-featured-image {
+    margin: 30px 0;
+    border: 4px solid var(--border-color);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: var(--shadow-cartoon);
+}
+
+.post-featured-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-content {
+    font-size: 1.1em;
+    line-height: 1.8;
+    color: var(--dark-color);
+}
+
+.post-content h2,
+.post-content h3,
+.post-content h4 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 0 var(--accent-color);
+}
+
+.post-content h2 {
+    font-size: 2em;
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 10px;
+}
+
+.post-content h3 {
+    font-size: 1.6em;
+}
+
+.post-content p {
+    margin-bottom: 20px;
+}
+
+.post-content a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    border-bottom: 2px dotted var(--primary-color);
+    transition: all 0.2s ease;
+}
+
+.post-content a:hover {
+    color: var(--secondary-color);
+    border-bottom-style: solid;
+}
+
+.post-content ul,
+.post-content ol {
+    margin-left: 30px;
+    margin-bottom: 20px;
+}
+
+.post-content li {
+    margin-bottom: 10px;
+}
+
+.post-content blockquote {
+    border-left: 5px solid var(--accent-color);
+    background-color: var(--light-color);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 10px;
+    font-style: italic;
+    box-shadow: 3px 3px 0 var(--border-color);
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border: 3px solid var(--border-color);
+    border-radius: 10px;
+    margin: 20px 0;
+    box-shadow: var(--shadow-cartoon);
+}
+
+.post-footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 3px dashed var(--border-color);
+    text-align: center;
+}
+
+.back-to-home {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: bold;
+    color: white;
+    background-color: var(--primary-color);
+    padding: 12px 30px;
+    border: 3px solid var(--border-color);
+    border-radius: 25px;
+    text-decoration: none;
+    box-shadow: var(--shadow-cartoon);
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.back-to-home:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hover);
+    background-color: var(--secondary-color);
+}
+
+/* ===================================
+   FOOTER
+   =================================== */
+
+.site-footer {
+    background-color: var(--dark-color);
+    color: white;
+    border-top: 5px solid var(--border-color);
+    padding: 30px 0;
+    margin-top: 60px;
+}
+
+.footer-content {
+    text-align: center;
+}
+
+.footer-content p {
+    font-family: var(--font-heading);
+    font-size: 1.1em;
+    margin-bottom: 15px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-family: var(--font-heading);
+    padding: 8px 20px;
+    border: 2px solid var(--accent-color);
+    border-radius: 15px;
+    transition: all 0.2s ease;
+}
+
+.footer-links a:hover {
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    transform: scale(1.05);
+}
+
+/* ===================================
+   NO POSTS MESSAGE
+   =================================== */
+
+.no-posts {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-size: 1.5em;
+    color: var(--primary-color);
+    padding: 60px 20px;
+    background-color: white;
+    border: 4px solid var(--border-color);
+    border-radius: 20px;
+    box-shadow: var(--shadow-cartoon);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 768px) {
+    .site-logo h1 {
+        font-size: 2em;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .site-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .site-nav a {
+        text-align: center;
+    }
+    
+    .posts-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .post {
+        padding: 20px;
+    }
+    
+    .post-header .post-title {
+        font-size: 1.8em;
+    }
+    
+    .page-title {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .site-logo h1 {
+        font-size: 1.5em;
+    }
+    
+    .site-logo .tagline {
+        font-size: 1em;
+    }
+    
+    .post-image {
+        height: 200px;
+    }
+}
