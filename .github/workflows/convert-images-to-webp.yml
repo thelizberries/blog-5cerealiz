@@ -5,9 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'assets/images/posts/**.jpg'
-      - 'assets/images/posts/**.jpeg'
-      - 'assets/images/posts/**.png'
+      - 'assets/images/posts/**'
 
 permissions:
   contents: write
@@ -30,56 +28,47 @@ jobs:
       - name: Convert images to WebP
         run: |
           # Trova tutte le immagini JPG/JPEG/PNG in assets/images/posts/
-          for img in assets/images/posts/*.{jpg,jpeg,png,JPG,JPEG,PNG}; do
-            # Salta se il pattern non matcha nessun file
-            [ -e "$img" ] || continue
+          find assets/images/posts -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) 2>/dev/null | while read img; do
+            # Ottieni il percorso senza estensione
+            base="${img%.*}"
+            webp_file="${base}.webp"
             
-            # Ottieni il nome base senza estensione
-            base=$(basename "$img" | sed 's/\.[^.]*$//')
-            dir=$(dirname "$img")
-            webp_file="$dir/$base.webp"
-            
-            # Salta se il file WebP esiste già
-            if [ -f "$webp_file" ]; then
-              echo "✓ $webp_file già esistente, skip"
-              continue
-            fi
-            
-            echo "Converting $img..."
-            
-            # Ridimensiona l'immagine se più grande di 900x600
-            convert "$img" -resize '900x600>' -quality 90 "/tmp/resized_$base.jpg"
-            
-            # Converti in WebP con qualità 75 e metodo 6 (miglior compressione)
-            cwebp -q 75 -m 6 "/tmp/resized_$base.jpg" -o "$webp_file"
-            
-            if [ $? -eq 0 ]; then
-              original_size=$(du -k "$img" | cut -f1)
-              webp_size=$(du -k "$webp_file" | cut -f1)
-              echo "✅ Creato $webp_file ($webp_size KB, originale: $original_size KB)"
+            # Converti solo se il file webp non esiste o è più vecchio dell'originale
+            if [ ! -f "$webp_file" ] || [ "$img" -nt "$webp_file" ]; then
+              echo "Converting $img to WebP..."
+              echo "Original size: $(du -h "$img" | cut -f1)"
               
-              # Elimina il file originale
-              rm "$img"
-              echo "🗑️  Eliminato $img"
-            else
-              echo "❌ Errore nella conversione di $img"
+              # Step 1: Ridimensiona a max 900x600 mantenendo proporzioni
+              temp_resized="${base}_resized.${img##*.}"
+              convert "$img" -resize '900x600>' -quality 92 "$temp_resized"
+              echo "Resized to max 900x600px"
+              
+              # Step 2: Converti in WebP con alta compressione
+              if cwebp -q 75 -m 6 -af -resize 900 600 "$temp_resized" -o "$webp_file"; then
+                webp_size=$(du -h "$webp_file" | cut -f1)
+                echo "Successfully converted to WebP: $webp_size"
+                
+                # Rimuovi i file temporanei e originali
+                rm "$temp_resized"
+                rm "$img"
+                echo "Removed original file $img"
+              else
+                echo "Error converting $img, keeping original file"
+                rm -f "$temp_resized"
+              fi
             fi
-            
-            # Pulisci il file temporaneo
-            rm -f "/tmp/resized_$base.jpg"
           done
       
-      - name: Commit and push changes
+      - name: Commit converted images
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          
-          # Aggiungi TUTTI i cambiamenti (incluse le eliminazioni)
-          git add -A
-          
-          if git diff --cached --quiet; then
-            echo "Nessuna immagine da convertire"
-          else
-            git commit -m "Convert images to WebP and delete originals"
-            git push origin main
-          fi
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add -A assets/images/posts/
+          git diff --staged --quiet || git commit -m "Convert images to WebP format and remove originals [skip ci]"
+          git pull --rebase origin main || true
+      
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
