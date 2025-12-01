@@ -5,9 +5,9 @@ layout: default
 <div class="home">
     <h1 class="page-title">{{ page.title }}</h1>
     
-    {% if site.posts.size > 0 %}
+    {% if paginator.posts.size > 0 %}
         <div class="posts-list">
-            {% for post in site.posts %}
+            {% for post in paginator.posts %}
                 <article class="post-card">
                     {% if post.image %}
                         <div class="post-image">
@@ -35,5 +35,43 @@ layout: default
         </div>
     {% else %}
         <p class="no-posts">Nessun articolo pubblicato ancora. Torna presto!</p>
+    {% endif %}
+    
+    {% if paginator.total_pages > 1 %}
+    <div class="pagination">
+        {% if paginator.previous_page %}
+            <a href="{{ paginator.previous_page_path | relative_url }}" class="pagination-link">
+                ← Precedente
+            </a>
+        {% else %}
+            <span class="pagination-link disabled">← Precedente</span>
+        {% endif %}
+
+        <div class="pagination-numbers">
+            {% if paginator.page == 1 %}
+                <span class="pagination-number active">1</span>
+            {% else %}
+                <a href="{{ '/' | relative_url }}" class="pagination-number">1</a>
+            {% endif %}
+
+            {% for page in (2..paginator.total_pages) %}
+                {% if page == paginator.page %}
+                    <span class="pagination-number active">{{ page }}</span>
+                {% elsif page == 2 or page == paginator.total_pages or page >= paginator.page - 2 and page <= paginator.page + 2 %}
+                    <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="pagination-number">{{ page }}</a>
+                {% elsif page == paginator.page - 3 or page == paginator.page + 3 %}
+                    <span class="pagination-ellipsis">...</span>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | relative_url }}" class="pagination-link">
+                Successiva →
+            </a>
+        {% else %}
+            <span class="pagination-link disabled">Successiva →</span>
+        {% endif %}
+    </div>
     {% endif %}
 </div>
