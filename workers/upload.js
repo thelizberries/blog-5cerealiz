@@ -135,6 +135,8 @@ async function handleImageUpload(data, token, owner, repo, branch, corsHeaders) 
     
     return new Response(JSON.stringify({
       success: true,
+      message: `Immagine "${filename}" caricata con successo!`,
+      webpName: filename.replace(/\.(jpg|jpeg|png)$/i, '.webp'),
       url: result.content.download_url,
       path: path
     }), {
@@ -155,23 +157,23 @@ async function handleImageUpload(data, token, owner, repo, branch, corsHeaders) 
  * Gestisce la creazione di un post nel blog
  */
 async function handlePostCreation(data, token, owner, repo, branch, corsHeaders) {
-  const { title, date, content, imagePath } = data;
+  const { filename, content } = data;
 
-  if (!title || !date || !content) {
-    return new Response(JSON.stringify({ error: 'Title, date e content sono richiesti' }), {
+  if (!filename || !content) {
+    return new Response(JSON.stringify({ error: 'Filename e content sono richiesti' }), {
       status: 400,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
 
-  // Crea il filename del post
-  const slug = title
-    .toLowerCase()
-    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Rimuove accenti
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-  
-  const filename = `${date}-${slug}.md`;
+  // Verifica che il filename sia un .md file
+  if (!filename.endsWith('.md')) {
+    return new Response(JSON.stringify({ error: 'Il file deve avere estensione .md' }), {
+      status: 400,
+      headers: { ...corsHeaders, 'Content-Type': 'application/json' }
+    });
+  }
+
   const path = `_posts/${filename}`;
 
   try {
@@ -186,29 +188,11 @@ async function handlePostCreation(data, token, owner, repo, branch, corsHeaders)
     });
 
     if (checkResponse.ok) {
-      return new Response(JSON.stringify({ error: 'Un post con questo titolo e data esiste già' }), {
+      return new Response(JSON.stringify({ error: `Un post con il nome "${filename}" esiste già. Modifica il titolo o la data.` }), {
         status: 409,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
       });
     }
-
-    // Crea il contenuto del post con frontmatter
-    let postContent = `---
-layout: post
-title: "${title}"
-date: ${date}
-author: 5Cerealiz
-`;
-
-    if (imagePath) {
-      postContent += `image: /${imagePath}
-`;
-    }
-
-    postContent += `---
-
-${content}
-`;
 
     // Crea il post
     const createUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
@@ -221,8 +205,8 @@ ${content}
         'User-Agent': '5Cerealiz-Blog-Worker'
       },
       body: JSON.stringify({
-        message: `New post: ${title}`,
-        content: btoa(unescape(encodeURIComponent(postContent))), // Encode UTF-8 to base64
+        message: `Create post: ${filename}`,
+        content: btoa(unescape(encodeURIComponent(content))),
         branch: branch
       })
     });

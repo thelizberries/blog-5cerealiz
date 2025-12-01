@@ -720,7 +720,16 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨"></textarea>
                 // Step 2: Create post
                 showMessage('Creazione post...', 'info');
                 
-                const imagePath = imageWebpName ? `assets/images/posts/${imageWebpName}` : null;
+                const postFilename = `${date}-${slugify(title)}.md`;
+                
+                // Build front matter
+                let frontMatter = `---\nlayout: post\ntitle: "${title}"\ndate: ${date}\nauthor: 5Cerealiz\n`;
+                if (imageWebpName) {
+                    frontMatter += `image: /assets/images/posts/${imageWebpName}\n`;
+                }
+                frontMatter += `---\n\n`;
+                
+                const postContent = frontMatter + content;
                 
                 const postResponse = await fetch(CLOUDFLARE_WORKER_URL, {
                     method: 'POST',
@@ -728,10 +737,8 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨"></textarea>
                     body: JSON.stringify({
                         action: 'create_post',
                         password: password,
-                        title: title,
-                        date: date,
-                        content: content,
-                        imagePath: imagePath
+                        filename: postFilename,
+                        content: postContent
                     })
                 });
                 
@@ -743,7 +750,7 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨"></textarea>
                 // Success!
                 showMessage(
                     `✅ <strong>Post pubblicato con successo!</strong><br><br>` +
-                    `📄 File: <code>${postData.filename}</code><br>` +
+                    `📄 File: <code>${postFilename}</code><br>` +
                     (imageWebpName ? `🖼️ Immagine: <code>${imageWebpName}</code><br>` : '') +
                     `<br>⏳ Il post apparirà sul blog tra 1-2 minuti.`,
                     'success'
