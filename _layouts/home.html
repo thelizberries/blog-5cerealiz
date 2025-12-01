@@ -19,8 +19,10 @@ layout: default
                             <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
                         </h2>
                         <div class="post-meta">
+                            {% assign mesi = "Gennaio,Febbraio,Marzo,Aprile,Maggio,Giugno,Luglio,Agosto,Settembre,Ottobre,Novembre,Dicembre" | split: "," %}
+                            {% assign m = post.date | date: "%-m" | minus: 1 %}
                             <time datetime="{{ post.date | date_to_xmlschema }}">
-                                {{ post.date | date: "%d %B %Y" }}
+                                {{ post.date | date: "%d" }} {{ mesi[m] }} {{ post.date | date: "%Y" }}
                             </time>
                         </div>
                         <div class="post-excerpt">
