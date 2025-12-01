@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: post
 title: Benvenuto nel Blog 5Cerealiz!
 date: 2025-11-30
 ---
