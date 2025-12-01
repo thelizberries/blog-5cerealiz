@@ -44,7 +44,7 @@ jobs:
               echo "Resized to max 900x600px"
               
               # Step 2: Converti in WebP con alta compressione
-              if cwebp -q 75 -m 6 -af -resize 900 600 "$temp_resized" -o "$webp_file"; then
+              if cwebp -q 75 -m 6 -af "$temp_resized" -o "$webp_file"; then
                 webp_size=$(du -h "$webp_file" | cut -f1)
                 echo "Successfully converted to WebP: $webp_size"
                 
