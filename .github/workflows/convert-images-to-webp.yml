@@ -80,7 +80,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Nessuna immagine da convertire"
           else
-            git pull --rebase origin main
             git commit -m "Convert images to WebP and delete originals"
             git push origin main
           fi
