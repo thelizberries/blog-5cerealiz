@@ -39,6 +39,7 @@ exclude:
   - .github
   - README.md
   - workers
+  - wrangler.toml
 
 # Plugins
 plugins:
