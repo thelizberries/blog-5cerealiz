@@ -248,11 +248,12 @@ main {
     line-height: 1.6;
 }
 
-.read-more {
+.read-more,
+.back-to-home {
     display: inline-block;
     font-family: var(--font-heading);
     font-weight: bold;
-    color: white;
+    color: white !important;
     background-color: var(--primary-color);
     padding: 10px 25px;
     border: 3px solid var(--border-color);
@@ -264,13 +265,16 @@ main {
     font-size: 0.9em;
 }
 
-.read-more:hover {
+.read-more:hover,
+.back-to-home:hover {
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 var(--border-color);
     background-color: var(--secondary-color);
+    color: white !important;
 }
 
-.read-more:active {
+.read-more:active,
+.back-to-home:active {
     transform: translate(1px, 1px);
     box-shadow: 2px 2px 0 var(--border-color);
 }
