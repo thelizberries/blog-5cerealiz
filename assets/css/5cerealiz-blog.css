@@ -468,6 +468,28 @@ main {
     transform: scale(1.05);
 }
 
+/* Social Icons */
+.social-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    font-size: 1.5em;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.social-links a i {
+    display: inline-block;
+}
+
 /* ===================================
    NO POSTS MESSAGE
    =================================== */
