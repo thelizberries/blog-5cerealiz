@@ -438,6 +438,12 @@
                     <p class="help-text">⏰ Puoi impostare una data futura per programmare la pubblicazione</p>
                 </div>
                 
+                <div class="form-group">
+                    <label for="description">📝 Descrizione Breve (Meta Description) *</label>
+                    <input type="text" id="description" placeholder="es: Nuova avventura cartoon dei 5Cerealiz" maxlength="160" required>
+                    <p class="help-text">⚠️ IMPORTANTE per SEO: Inserisci una descrizione unica di 120-160 caratteri. Apparirà nei risultati di ricerca Google.</p>
+                </div>
+                
                 <!-- EDITOR CONTENUTO -->
                 <div class="form-group">
                     <label for="content">✍️ Contenuto del Post *</label>
@@ -658,6 +664,7 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨"></textarea>
             const password = document.getElementById('password').value;
             const title = document.getElementById('title').value;
             const date = document.getElementById('date').value;
+            const description = document.getElementById('description').value;
             const content = document.getElementById('content').value;
             
             // Validation
@@ -671,6 +678,14 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨"></textarea>
             }
             if (!date) {
                 showMessage('Seleziona la data di pubblicazione', 'error');
+                return;
+            }
+            if (!description) {
+                showMessage('Inserisci la descrizione breve (meta description)', 'error');
+                return;
+            }
+            if (description.length < 50 || description.length > 160) {
+                showMessage('La descrizione deve essere tra 50 e 160 caratteri', 'error');
                 return;
             }
             if (!content) {
@@ -723,7 +738,7 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨"></textarea>
                 const postFilename = `${date}-${slugify(title)}.md`;
                 
                 // Build front matter
-                let frontMatter = `---\nlayout: post\ntitle: "${title}"\ndate: ${date}\nauthor: 5Cerealiz\n`;
+                let frontMatter = `---\nlayout: post\ntitle: "${title}"\ndate: ${date}\nauthor: 5Cerealiz\ndescription: "${description}"\n`;
                 if (imageWebpName) {
                     frontMatter += `image: /assets/images/posts/${imageWebpName}\n`;
                 }
