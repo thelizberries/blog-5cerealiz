@@ -164,6 +164,7 @@ main {
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 30px;
     margin-top: 30px;
+    justify-content: center;
 }
 
 .post-card {
