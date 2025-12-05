@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5Cerealiz Blog - Guida Completa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            line-height: 1.6;
+            color: #2C3E50;
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            border: 5px solid #2C3E50;
+            box-shadow: 8px 8px 0px #2C3E50;
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 5px solid #2C3E50;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 4px 4px 0 #2C3E50;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        header p {
+            font-size: 1.2em;
+            color: #FFC425;
+            text-shadow: 2px 2px 0 #2C3E50;
+            font-weight: bold;
+        }
+        
+        .content {
+            padding: 40px 30px;
+        }
+        
+        h2 {
+            color: #FF6B35;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #FFC425;
+            font-size: 1.8em;
+            text-shadow: 2px 2px 0 rgba(44, 62, 80, 0.1);
+        }
+        
+        h3 {
+            color: #F7931E;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+        
+        h4 {
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul, ol {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .toc {
+            background: #FFF8E7;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 3px solid #2C3E50;
+        }
+        
+        .toc h2 {
+            margin-top: 0;
+            border: none;
+        }
+        
+        .toc ul {
+            list-style: none;
+            margin-left: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 10px;
+        }
+        
+        .toc a {
+            color: #FF6B35;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .toc a:hover {
+            color: #F7931E;
+            text-decoration: underline;
+        }
+        
+        .quick-guide {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1) 0%, rgba(247, 147, 30, 0.1) 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 4px solid #FF6B35;
+            margin: 20px 0;
+        }
+        
+        .steps {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 3px dashed #2C3E50;
+        }
+        
+        .step {
+            margin-bottom: 20px;
+            padding-left: 15px;
+        }
+        
+        .highlight {
+            background: #FFF3CD;
+            padding: 15px;
+            border-left: 4px solid #FFC425;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #FFC425;
+        }
+        
+        .success {
+            background: #D4EDDA;
+            padding: 15px;
+            border-left: 4px solid #28A745;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #28A745;
+        }
+        
+        .info {
+            background: #D1ECF1;
+            padding: 15px;
+            border-left: 4px solid #17A2B8;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 3px solid #17A2B8;
+        }
+        
+        code {
+            background: #FFF8E7;
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-family: "Courier New", monospace;
+            font-size: 0.9em;
+            color: #FF6B35;
+            border: 2px solid #2C3E50;
+        }
+        
+        pre {
+            background: #2C3E50;
+            color: #FFC425;
+            padding: 20px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 3px solid #2C3E50;
+        }
+        
+        pre code {
+            background: none;
+            color: #FFC425;
+            padding: 0;
+            border: none;
+        }
+        
+        a {
+            color: #FF6B35;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .technical {
+            background: #FFF8E7;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 3px solid #2C3E50;
+        }
+        
+        footer {
+            background: #2C3E50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+        
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: #FF6B35;
+            color: white;
+            border-radius: 12px;
+            font-size: 0.85em;
+            margin-left: 8px;
+        }
+        
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+        
+        hr {
+            border: none;
+            border-top: 3px dashed #FFC425;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎨 5Cerealiz Blog</h1>
+            <p>Guida Completa per la Creazione dei Post</p>
+        </header>
+        
+        <div class="content">
+            <div class="toc">
+                <h2><span class="emoji">📑</span>Indice</h2>
+                <ul>
+                    <li><a href="#guida-rapida">⚡ Guida Rapida</a></li>
+                    <li><a href="#caricamento-immagini">📸 Caricamento Immagini</a></li>
+                    <li><a href="#struttura-blog">📝 Struttura del Blog</a></li>
+                    <li><a href="#creare-post">🚀 Come Creare un Nuovo Post</a></li>
+                    <li><a href="#gestione-immagini">🖼️ Gestione delle Immagini</a></li>
+                    <li><a href="#pubblicare-post">📤 Pubblicare il Post</a></li>
+                    <li><a href="#formattazione">✏️ Formattazione Markdown</a></li>
+                    <li><a href="#workflow">🔄 Workflow Completo</a></li>
+                    <li><a href="#faq">❓ Domande Frequenti</a></li>
+                    <li><a href="#tecnico">🔧 Informazioni Tecniche</a></li>
+                </ul>
+            </div>
+
+            <div id="guida-rapida" class="quick-guide">
+                <h2><span class="emoji">⚡</span>GUIDA RAPIDA - Creare un Nuovo Post</h2>
+                <p><strong>Il modo più semplice per scrivere e pubblicare un post:</strong></p>
+                
+                <div class="steps">
+                    <div class="step">
+                        <h3>1️⃣ Vai su <a href="https://blog.5cerealiz.thelizards.it/upload.html" target="_blank">https://blog.5cerealiz.thelizards.it/upload.html</a></h3>
+                    </div>
+                    <div class="step">
+                        <h3>2️⃣ (Opzionale) Seleziona un'immagine per il post</h3>
+                        <p>L'immagine verrà automaticamente ottimizzata (max 900x600px, WebP ~30-40KB)</p>
+                    </div>
+                    <div class="step">
+                        <h3>3️⃣ Scrivi il titolo del post</h3>
+                        <p><strong>Esempio:</strong> "Nuova Puntata dei 5Cerealiz!"</p>
+                    </div>
+                    <div class="step">
+                        <h3>4️⃣ Seleziona la data di pubblicazione</h3>
+                        <p>⏰ Puoi programmare post futuri! Il post verrà pubblicato automaticamente il giorno indicato.</p>
+                    </div>
+                    <div class="step">
+                        <h3>5️⃣ Inserisci la descrizione breve (Meta Description)</h3>
+                        <p>⚠️ <strong>IMPORTANTE per SEO:</strong> Inserisci una descrizione unica di 120-160 caratteri</p>
+                        <p><strong>Esempio:</strong> "Scopri la nuova avventura cartoon dei 5Cerealiz con tante sorprese musicali!"</p>
+                    </div>
+                    <div class="step">
+                        <h3>6️⃣ Scrivi il contenuto del post</h3>
+                        <p>Usa la toolbar per formattare il testo (grassetto, corsivo, titoli, liste)</p>
+                        <p>Inserisci <code>&lt;!--more--&gt;</code> per separare l'anteprima dal resto del contenuto</p>
+                        <p><strong>Suggerimento:</strong> Guarda l'anteprima in tempo reale sulla destra!</p>
+                    </div>
+                    <div class="step">
+                        <h3>7️⃣ Inserisci la password</h3>
+                        <p>Richiedi la password al team tecnico se non ce l'hai</p>
+                    </div>
+                    <div class="step">
+                        <h3>8️⃣ Clicca "Pubblica Post"</h3>
+                    </div>
+                    <div class="step">
+                        <h3>9️⃣ Fatto!</h3>
+                        <div class="success">
+                            Il post apparirà sul blog tra 1-2 minuti! 🎉
+                        </div>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <h3 style="margin-top: 30px;">✏️ Per Modificare un Post Esistente</h3>
+                <p>Per modificare post già pubblicati, usa <a href="https://prose.io/" target="_blank">Prose.io</a>:</p>
+                <ol>
+                    <li>Vai su <a href="https://prose.io/" target="_blank">https://prose.io/</a></li>
+                    <li>Fai login con GitHub</li>
+                    <li>Seleziona il repository "blog-5cerealiz"</li>
+                    <li>Clicca sulla cartella "_posts"</li>
+                    <li>Seleziona il post da modificare</li>
+                    <li>Modifica e salva</li>
+                </ol>
+            </div>
+
+            <div id="caricamento-immagini">
+                <h2><span class="emoji">📸</span>Caricamento Immagini</h2>
+                
+                <div class="info">
+                    <strong>💡 Novità:</strong> Ora puoi caricare immagini direttamente durante la creazione del post! Usa l'<a href="https://blog.5cerealiz.thelizards.it/upload.html">editor unificato</a> per tutto in un solo posto.
+                </div>
+                
+                <h3>METODO 1: Editor Unificato (CONSIGLIATO) 🎯</h3>
+                <div class="highlight">
+                    <p><strong>Carica immagini e crea post nello stesso posto:</strong></p>
+                    <ol>
+                        <li><strong>Vai al link:</strong> <a href="https://blog.5cerealiz.thelizards.it/upload.html" target="_blank">https://blog.5cerealiz.thelizards.it/upload.html</a></li>
+                        <li><strong>Seleziona l'immagine</strong> (formati supportati: <code>.jpg</code>, <code>.jpeg</code>, <code>.png</code>)</li>
+                        <li><strong>Scrivi il post</strong> con titolo, data, descrizione e contenuto</li>
+                        <li><strong>Vedi l'anteprima</strong> in tempo reale</li>
+                        <li><strong>Inserisci la password</strong> e pubblica tutto insieme!</li>
+                    </ol>
+                </div>
+                
+                <div class="success">
+                    <strong>✅ Vantaggi:</strong>
+                    <ul>
+                        <li><strong>Tutto in un solo posto</strong>: immagine + post insieme</li>
+                        <li><strong>Anteprima live</strong>: vedi come apparirà il post mentre scrivi</li>
+                        <li>Toolbar Markdown per formattazione facile</li>
+                        <li>Ottimizzazione automatica immagini (max 900x600px, WebP ~30-40KB)</li>
+                        <li>100% gratuito (Cloudflare Workers: 100.000 richieste/giorno)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr>
+
+            <h2>DOCUMENTAZIONE PER UTENTI TECNICI</h2>
+
+            <div id="struttura-blog">
+                <h2><span class="emoji">📝</span>Struttura del Blog</h2>
+                <p>Il blog è costruito con <strong>Jekyll</strong> e <strong>GitHub Pages</strong>. I post vengono scritti in formato Markdown e pubblicati automaticamente su:</p>
+                <ul>
+                    <li><strong>Blog 5Cerealiz:</strong> <a href="https://blog.5cerealiz.thelizards.it" target="_blank">https://blog.5cerealiz.thelizards.it</a></li>
+                </ul>
+            </div>
+
+            <div id="creare-post">
+                <h2><span class="emoji">🚀</span>Come Creare un Nuovo Post</h2>
+                
+                <h3>1. Creare il File del Post</h3>
+                <p>I post vanno creati nella cartella <code>_posts/</code> con questa convenzione di naming:</p>
+                <pre><code>YYYY-MM-DD-titolo-del-post.md</code></pre>
+                <p><strong>Esempio:</strong> <code>2025-12-15-nuova-puntata-cartoon.md</code></p>
+                
+                <div class="highlight">
+                    <strong>⚠️ Importante:</strong>
+                    <ul>
+                        <li>La data deve essere in formato <code>YYYY-MM-DD</code> (anno-mese-giorno)</li>
+                        <li>Il titolo deve usare trattini <code>-</code> al posto degli spazi</li>
+                        <li>L'estensione deve essere <code>.md</code></li>
+                    </ul>
+                </div>
+
+                <h3>2. Struttura del Post</h3>
+                <p>Ogni post deve iniziare con il <strong>front matter</strong> (metadati racchiusi tra <code>---</code>):</p>
+                
+                <h4>Post SENZA immagine:</h4>
+                <pre><code>---
+layout: post
+title: "Titolo del Post"
+date: 2025-12-15
+author: 5Cerealiz
+description: "Descrizione breve e unica del post (120-160 caratteri per SEO)"
+---
+
+Inserisci qui il testo del post...
+
+&lt;!--more--&gt;
+
+Continua con il resto del contenuto...</code></pre>
+
+                <h4>Post CON immagine:</h4>
+                <pre><code>---
+layout: post
+title: "Titolo del Post"
+date: 2025-12-15
+author: 5Cerealiz
+image: /assets/images/posts/nome-immagine.webp
+description: "Descrizione breve e unica del post (120-160 caratteri per SEO)"
+---
+
+Inserisci qui il testo del post...
+
+&lt;!--more--&gt;
+
+Continua con il resto del contenuto...</code></pre>
+
+                <h3>3. Componenti del Front Matter</h3>
+                <ul>
+                    <li><strong>layout:</strong> Sempre <code>post</code> (obbligatorio)</li>
+                    <li><strong>title:</strong> Il titolo del post tra virgolette (obbligatorio)</li>
+                    <li><strong>date:</strong> La data nel formato <code>YYYY-MM-DD</code> (obbligatorio)
+                        <ul>
+                            <li>Puoi usare date future per programmare la pubblicazione</li>
+                            <li>I post con data futura non appariranno sul blog fino a quel giorno</li>
+                        </ul>
+                    </li>
+                    <li><strong>author:</strong> Sempre <code>5Cerealiz</code> (automatico)</li>
+                    <li><strong>description:</strong> Descrizione breve del post (OBBLIGATORIO per SEO)
+                        <ul>
+                            <li>⚠️ <strong>MOLTO IMPORTANTE:</strong> Ogni post DEVE avere una descrizione UNICA</li>
+                            <li>Lunghezza: 120-160 caratteri</li>
+                            <li>Viene usata come meta description per Google e social media</li>
+                            <li>Evita descrizioni duplicate tra post diversi</li>
+                        </ul>
+                    </li>
+                    <li><strong>image:</strong> Percorso dell'immagine di anteprima (opzionale)</li>
+                </ul>
+
+                <h3>4. Tag &lt;!--more--&gt;</h3>
+                <p>Il tag <code>&lt;!--more--&gt;</code> separa l'anteprima (excerpt) dal resto del contenuto:</p>
+                <ul>
+                    <li>Il testo <strong>prima</strong> del tag appare nella home del blog come anteprima</li>
+                    <li>Il testo <strong>dopo</strong> il tag appare solo nell'articolo completo</li>
+                </ul>
+            </div>
+
+            <div id="formattazione">
+                <h2><span class="emoji">✏️</span>Esempi di Formattazione Markdown</h2>
+                
+                <h3>Titoli</h3>
+                <pre><code>## Titolo di Sezione
+### Sottotitolo</code></pre>
+
+                <h3>Testo</h3>
+                <pre><code>**Grassetto**
+*Corsivo*
+[Link](https://www.example.com)</code></pre>
+
+                <h3>Liste</h3>
+                <pre><code>- Elemento 1
+- Elemento 2
+- Elemento 3</code></pre>
+
+                <h3>Immagini nel Contenuto</h3>
+                <pre><code>![Descrizione immagine](/assets/images/posts/nome-immagine.webp)</code></pre>
+            </div>
+
+            <div id="workflow">
+                <h2><span class="emoji">🔄</span>Workflow Completo</h2>
+                
+                <h3>Creare un Nuovo Post (METODO SEMPLICE)</h3>
+                <ol>
+                    <li>🌐 Vai su <a href="https://blog.5cerealiz.thelizards.it/upload.html" target="_blank">https://blog.5cerealiz.thelizards.it/upload.html</a></li>
+                    <li>🖼️ (Opzionale) Seleziona un'immagine</li>
+                    <li>✍️ Scrivi titolo, data e <strong>descrizione unica</strong></li>
+                    <li>📝 Scrivi il contenuto</li>
+                    <li>👁️ Controlla l'anteprima in tempo reale</li>
+                    <li>🔐 Inserisci la password</li>
+                    <li>📤 Clicca "Pubblica Post"</li>
+                    <li>⏳ Attendi 1-2 minuti per la pubblicazione</li>
+                    <li>✅ Il post appare sul blog!</li>
+                </ol>
+            </div>
+
+            <div id="faq">
+                <h2><span class="emoji">❓</span>Domande Frequenti</h2>
+                
+                <h3>Perché devo inserire una descrizione per ogni post?</h3>
+                <p>La descrizione (meta description) è fondamentale per la SEO. Appare nei risultati di Google e aiuta le persone a capire di cosa parla il tuo post. <strong>Ogni post deve avere una descrizione UNICA</strong> per evitare penalizzazioni SEO.</p>
+
+                <h3>Come modifico un post già pubblicato?</h3>
+                <ol>
+                    <li>Usa <a href="https://prose.io/" target="_blank">Prose.io</a> per modificare il file in <code>_posts/</code></li>
+                    <li>Puoi cambiare titolo, data, descrizione, contenuto, immagini</li>
+                    <li>Fai commit e il post verrà aggiornato automaticamente</li>
+                </ol>
+
+                <h3>Posso programmare post per il futuro?</h3>
+                <p>Sì! Puoi impostare una data futura nel front matter del post (es: <code>date: 2025-12-25</code>). Il post verrà pubblicato automaticamente il giorno indicato.</p>
+
+                <h3>Come ottengo la password per pubblicare?</h3>
+                <p>La password è <strong>riservata ai membri del team</strong> che devono creare post. Contatta il team tecnico per ottenerla.</p>
+            </div>
+
+            <div id="tecnico" class="technical">
+                <h2><span class="emoji">🔧</span>Informazioni Tecniche</h2>
+                
+                <h3>Form di Upload</h3>
+                <p>Il sistema di upload è implementato con:</p>
+                <ul>
+                    <li><strong>Frontend:</strong> Form HTML accessibile su <a href="https://blog.5cerealiz.thelizards.it/upload.html" target="_blank">https://blog.5cerealiz.thelizards.it/upload.html</a></li>
+                    <li><strong>Backend:</strong> Cloudflare Worker serverless</li>
+                    <li><strong>Autenticazione:</strong> Password protetta</li>
+                    <li><strong>Storage:</strong> GitHub API</li>
+                    <li><strong>Ottimizzazione:</strong> Ridimensionamento automatico + conversione WebP</li>
+                    <li><strong>100% gratuito:</strong> Cloudflare Workers offre 100.000 richieste/giorno</li>
+                </ul>
+            </div>
+        </div>
+
+        <footer>
+            <p>Per qualsiasi dubbio o problema, contatta il team tecnico! 🎵</p>
+            <p style="margin-top: 10px; opacity: 0.8;">© 2025 5Cerealiz - La Cartoon Band</p>
+        </footer>
+    </div>
+</body>
+</html>
