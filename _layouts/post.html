@@ -27,6 +27,41 @@ layout: default
         {{ content }}
     </div>
     
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "{{ page.title }}",
+      "image": "{{ page.image | default: '/assets/images/5cerealiz-og-image.jpg' | absolute_url }}",
+      "datePublished": "{{ page.date | date_to_xmlschema }}",
+      "dateModified": "{{ page.last_modified_at | default: page.date | date_to_xmlschema }}",
+      "author": {
+        "@type": "MusicGroup",
+        "name": "5Cerealiz",
+        "url": "https://www.thelizards.it/5cerealiz",
+        "sameAs": [
+          "https://www.facebook.com/5CereaLiz",
+          "https://www.youtube.com/@5Cerealiz",
+          "https://www.instagram.com/5cerealiz"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "5Cerealiz",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "{{ '/assets/images/5cerealiz-logo.png' | absolute_url }}"
+        }
+      },
+      "description": "{{ page.description | default: page.excerpt | strip_html | truncate: 160 }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page.url | absolute_url }}"
+      }
+    }
+    </script>
+    
     <footer class="post-footer">
         <a href="{{ '/' | relative_url }}" class="back-to-home">← Torna alla home</a>
     </footer>
