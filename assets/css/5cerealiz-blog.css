@@ -160,14 +160,15 @@ main {
    =================================== */
 
 .posts-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
     margin-top: 30px;
-    justify-content: center;
 }
 
 .post-card {
+    width: 350px;
     background-color: white;
     border: 4px solid var(--border-color);
     border-radius: 20px;
