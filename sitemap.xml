@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <!-- Homepage Blog 5CereaLiz -->
     <url>
-        <loc>https://blog.5cerealiz.it/</loc>
+        <loc>https://blog.5cerealiz.thelizards.it/</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
@@ -10,7 +10,7 @@
     
     <!-- Post del blog - aggiungi qui i post pubblicati -->
     <url>
-        <loc>https://blog.5cerealiz.it/2025/11/30/benvenuto-blog-5cerealiz.html</loc>
+        <loc>https://blog.5cerealiz.thelizards.it/2025/11/30/benvenuto-blog-5cerealiz/</loc>
         <lastmod>2025-11-30</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
