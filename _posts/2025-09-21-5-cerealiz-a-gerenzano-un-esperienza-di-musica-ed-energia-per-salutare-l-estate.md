@@ -36,3 +36,5 @@ Un enorme grazie anche ai fonici Pier, Carlo e Fabio, bravissimi nel gestire un 
 Insomma, il nostro entusiasmo è alle stelle: un immenso riconoscimento a tutti per aver reso questo progetto così indimenticabile!
 
 Seguici per scoprire altre iniziative incredibili come questa.
+
+🎨 **<a href="https://www.facebook.com/photo/?fbid=1116246523986813&set=pcb.1109704807974318" target="_blank" rel="noopener" style="text-decoration: underline;">Rivivi l'emozione: guarda la locandina dell'evento!</a>** 🎭
