@@ -470,6 +470,24 @@ Continua con il resto del contenuto...</code></pre>
 *Corsivo*
 [Link](https://www.example.com)</code></pre>
 
+                <h3>Link Esterni (Spotify, YouTube, Social, ecc.)</h3>
+                <p><strong>Per i link esterni</strong> come Spotify, YouTube, biglietteria, social media, ecc., è consigliato usare HTML per aprirli in una nuova finestra. Questo migliora la SEO e l'esperienza utente mantenendo il blog aperto:</p>
+                <pre><code>&lt;a href="URL" target="_blank" rel="noopener" style="text-decoration: underline;"&gt;Testo del link&lt;/a&gt;</code></pre>
+                
+                <p><strong>Esempio pratico con formattazione:</strong></p>
+                <pre><code>🎵 Ascolta su **&lt;a href="https://open.spotify.com/..." target="_blank" rel="noopener" style="text-decoration: underline;"&gt;Spotify&lt;/a&gt;**
+🎫 **&lt;a href="https://vivaticket.com/..." target="_blank" rel="noopener" style="text-decoration: underline;"&gt;Acquista i biglietti&lt;/a&gt;**</code></pre>
+
+                <div class="warning">
+                    <strong>💡 Perché usare target="_blank"?</strong>
+                    <ul>
+                        <li>✅ Riduce il bounce rate (l'utente non abbandona il blog)</li>
+                        <li>✅ Migliora le metriche SEO mantenendo la sessione attiva</li>
+                        <li>✅ Esperienza utente migliore (può tornare facilmente al post)</li>
+                        <li>✅ L'attributo <code>rel="noopener"</code> è importante per sicurezza</li>
+                    </ul>
+                </div>
+
                 <h3>Liste</h3>
                 <pre><code>- Elemento 1
 - Elemento 2
