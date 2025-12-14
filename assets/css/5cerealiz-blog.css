@@ -221,8 +221,8 @@ main {
 
 .post-title {
     font-family: var(--font-heading);
-    font-size: 1.6em;
-    margin-bottom: 10px;
+    /*font-size: 1.6em;
+    margin-bottom: 10px;*/
     line-height: 1.2;
 }
 
@@ -336,13 +336,13 @@ main {
 .post-content h4 {
     font-family: var(--font-heading);
     color: var(--primary-color);
-    margin-top: 30px;
+    /*margin-top: 30px; */
     margin-bottom: 15px;
     text-shadow: 1px 1px 0 var(--accent-color);
 }
 
 .post-content h2 {
-    font-size: 2em;
+    /*font-size: 2em; */
     border-bottom: 3px solid var(--accent-color);
     padding-bottom: 10px;
 }
