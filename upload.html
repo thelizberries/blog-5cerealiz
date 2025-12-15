@@ -738,7 +738,8 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨"></textarea>
                 const postFilename = `${date}-${slugify(title)}.md`;
                 
                 // Build front matter
-                let frontMatter = `---\nlayout: post\ntitle: "${title}"\ndate: ${date}\nauthor: 5Cerealiz\ndescription: "${description}"\n`;
+                // Always use single quotes for title to allow double quotes inside
+                let frontMatter = `---\nlayout: post\ntitle: '${title}'\ndate: ${date}\ndescription: "${description}"\n`;
                 if (imageWebpName) {
                     frontMatter += `image: /assets/images/posts/${imageWebpName}\n`;
                 }
