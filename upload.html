@@ -586,9 +586,13 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨
             // Update content (basic markdown rendering)
             if (content) {
                 let html = content
-                    // Headers
+                    // Headers (process from longest to shortest to avoid conflicts)
+                    .replace(/^###### (.*$)/gim, '<h6>$1</h6>')
+                    .replace(/^##### (.*$)/gim, '<h5>$1</h5>')
+                    .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
                     .replace(/^### (.*$)/gim, '<h3>$1</h3>')
                     .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                    .replace(/^# (.*$)/gim, '<h1>$1</h1>')
                     // Bold
                     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
                     // Italic
