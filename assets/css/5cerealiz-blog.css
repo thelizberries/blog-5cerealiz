@@ -375,7 +375,8 @@ main {
 }
 
 .post-content li {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    line-height: 1.6;
 }
 
 .post-content blockquote {
