@@ -174,6 +174,9 @@ async function handlePostCreation(data, token, owner, repo, branch, corsHeaders)
     });
   }
 
+  // Verifica e correggi il marcatore <!--more-->
+  let processedContent = ensureMoreMarker(content);
+
   const path = `_posts/${filename}`;
 
   try {
@@ -206,7 +209,7 @@ async function handlePostCreation(data, token, owner, repo, branch, corsHeaders)
       },
       body: JSON.stringify({
         message: `Create post: ${filename}`,
-        content: btoa(unescape(encodeURIComponent(content))),
+        content: btoa(unescape(encodeURIComponent(processedContent))),
         branch: branch
       })
     });
@@ -236,4 +239,82 @@ async function handlePostCreation(data, token, owner, repo, branch, corsHeaders)
       headers: { ...corsHeaders, 'Content-Type': 'application/json' }
     });
   }
+}
+
+// Funzione per verificare e inserire il marcatore <!--more-->
+function ensureMoreMarker(content) {
+  // Separa front matter dal contenuto
+  const frontMatterRegex = /^---\n([\s\S]*?)\n---\n([\s\S]*)$/;
+  const match = content.match(frontMatterRegex);
+  
+  if (!match) {
+    // Se non c'è front matter, restituisci il contenuto originale
+    return content;
+  }
+  
+  const frontMatter = match[1];
+  let postContent = match[2];
+  
+  // Rimuovi spazi/newline iniziali
+  postContent = postContent.trim();
+  
+  // Estrai il titolo dal front matter per controllarne la lunghezza
+  const titleMatch = frontMatter.match(/title:\s*['"]?([^'"\n]+)['"]?/);
+  const titleLength = titleMatch ? titleMatch[1].trim().length : 0;
+  
+  // Se il titolo è >= 50 caratteri, riduci il limite a 80, altrimenti usa 100
+  const maxLength = titleLength >= 50 ? 80 : 100;
+  const minLength = titleLength >= 50 ? 40 : 50;
+  const searchStart = titleLength >= 50 ? 60 : 80;
+  const searchRange = titleLength >= 50 ? 40 : 50;
+  
+  // Controlla se <!--more--> è già presente
+  if (postContent.includes('<!--more-->')) {
+    const moreIndex = postContent.indexOf('<!--more-->');
+    if (moreIndex > 0 && moreIndex < 400) {
+      return content;
+    }
+    postContent = postContent.replace('<!--more-->', '').trim();
+  }
+  
+  // Trova la posizione migliore: dopo il primo paragrafo o dopo maxLength caratteri
+  let insertPosition = maxLength;
+  
+  // Cerca il primo doppio newline (fine paragrafo) entro i primi maxLength caratteri
+  const firstParagraphEnd = postContent.substring(0, maxLength).indexOf('\n\n');
+  if (firstParagraphEnd > minLength && firstParagraphEnd < maxLength) {
+    insertPosition = firstParagraphEnd;
+  } else {
+    // Altrimenti cerca la fine della prima frase dopo searchStart caratteri
+    const actualSearchStart = Math.min(searchStart, postContent.length);
+    const remainingText = postContent.substring(actualSearchStart, Math.min(actualSearchStart + searchRange, postContent.length));
+    
+    // Cerca il primo punto seguito da spazio o newline
+    const sentenceEndMatch = remainingText.match(/[.!?][\s\n]/);
+    if (sentenceEndMatch) {
+      insertPosition = actualSearchStart + sentenceEndMatch.index + 1;
+    } else {
+      // Se non trova un punto, cerca almeno uno spazio dopo 100 caratteri
+      const spaceIndex = remainingText.indexOf(' ');
+      if (spaceIndex !== -1) {
+        insertPosition = searchStart + spaceIndex;
+      }
+    }
+  }
+  
+  // Assicurati di non troncare nel mezzo di una parola
+  while (insertPosition < postContent.length && 
+         postContent[insertPosition] !== ' ' && 
+         postContent[insertPosition] !== '\n') {
+    insertPosition++;
+  }
+  
+  // Inserisci il marcatore
+  const beforeMarker = postContent.substring(0, insertPosition).trimEnd();
+  const afterMarker = postContent.substring(insertPosition).trimStart();
+  
+  postContent = `${beforeMarker}\n\n<!--more-->\n\n${afterMarker}`;
+  
+  // Ricostruisci il file completo
+  return `---\n${frontMatter}\n---\n${postContent}`;
 }
