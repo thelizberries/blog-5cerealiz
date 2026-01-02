@@ -7,6 +7,9 @@ description: "Benvenuto nel blog ufficiale dei 5Cerealiz, la cartoon band più c
 
 Benvenuto nel blog ufficiale dei **5Cerealiz**, la cartoon band più colorata del web! 🎨🎵
 
+<!--more-->
+
+
 ## Chi Siamo
 
 I 5Cerealiz sono una band virtuale composta da personaggi cartoon che portano musica, allegria e tanto colore nella vita di tutti i giorni.
@@ -19,8 +22,6 @@ In questo blog condivideremo:
 - 🎵 Nuove canzoni e progetti musicali
 - 🎨 Behind the scenes della creazione
 - 📢 Eventi e novità
-
-<!--more-->
 
 ## Resta Connesso
 

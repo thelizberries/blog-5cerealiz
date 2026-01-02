@@ -10,7 +10,6 @@ image: /assets/images/posts/gerenzano.webp
 ## Oratorio di Gerenzano e 5 Cerealiz
 Sabato 20 settembre all'Oratorio di Gerenzano è stata una serata semplicemente fantastica con il concerto dei 5 Cerealiz!
 
-
 <!--more-->
 
 

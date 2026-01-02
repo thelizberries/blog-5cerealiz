@@ -8,7 +8,10 @@ image: /assets/images/posts/immagine 5cerealiz.webp
 
 ## Il Calendario dell’Avvento sui nostri social
 Sulle nostre pagine social stiamo riproponendo i video del Calendario dell’Avvento realizzati un anno fa.
+
 <!--more-->
+
+
 Rivederli oggi ci riporta subito a quell’esperienza così speciale: un momento leggero e divertente, che ci ha permesso di giocare con la fantasia.
 Abbiamo reinterpretato alcune scene dei cartoni animati attraverso i nostri costumi e, naturalmente, attraverso la nostra ironia.
 
