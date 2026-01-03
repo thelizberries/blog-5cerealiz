@@ -745,8 +745,10 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨
                 const postFilename = `${date}-${slugify(title)}.md`;
                 
                 // Build front matter
-                // Always use single quotes for title and description to allow double quotes inside
-                let frontMatter = `---\nlayout: post\ntitle: '${title}'\ndate: ${date}\ndescription: '${description}'\n`;
+                // Always use double quotes for title and description, replace internal double quotes with typographic quotes
+                const safeTitle = title.replace(/"/g, '"').replace(/"/g, '"');
+                const safeDescription = description.replace(/"/g, '"').replace(/"/g, '"');
+                let frontMatter = `---\nlayout: post\ntitle: "${safeTitle}"\ndate: ${date}\ndescription: "${safeDescription}"\n`;
                 if (imageWebpName) {
                     frontMatter += `image: /assets/images/posts/${imageWebpName}\n`;
                 }
