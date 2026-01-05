@@ -268,7 +268,7 @@ main {
     transition: all 0.2s ease;
     text-transform: uppercase;
     font-size: 0.9em;
-    margin-top: auto;
+    /*margin-top: auto; */
     text-align: right;
 }
 
