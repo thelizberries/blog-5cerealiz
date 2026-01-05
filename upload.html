@@ -429,7 +429,8 @@
                 <!-- METADATI POST -->
                 <div class="form-group">
                     <label for="title">📌 Titolo del Post *</label>
-                    <input type="text" id="title" placeholder="es: Nuova Puntata della Serie!" required>
+                    <input type="text" id="title" placeholder="es: Nuovo concerto a Milano" maxlength="51" required>
+                    <p class="help-text">⚠️ SEO: Massimo 51 caratteri (rimangono: <span id="titleCounter">51</span>). Esempio completo: "Nuovo concerto a Milano"</p>
                 </div>
                 
                 <div class="form-group">
@@ -525,7 +526,13 @@ Non vediamo l'ora di condividerla con voi! 🎵🎨
         const CLOUDFLARE_WORKER_URL = 'https://5cerealiz-blog-upload.lizberries.workers.dev';
         
         // Auto-update preview
-        document.getElementById('title').addEventListener('input', updatePreview);
+        document.getElementById('title').addEventListener('input', function() {
+            updatePreview();
+            // Aggiorna contatore caratteri titolo
+            const remaining = 51 - this.value.length;
+            document.getElementById('titleCounter').textContent = remaining;
+            document.getElementById('titleCounter').style.color = remaining < 10 ? 'red' : 'inherit';
+        });
         document.getElementById('date').addEventListener('change', updatePreview);
         document.getElementById('content').addEventListener('input', updatePreview);
         
