@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Benvenuto nel Blog 5Cerealiz!
+title: "Benvenuto nel Blog 5Cerealiz!"
 date: 2025-11-30
 description: "Benvenuto nel blog ufficiale dei 5Cerealiz, la cartoon band più colorata! Scopri aggiornamenti, nuove canzoni e dietro le quinte della creazione."
 ---

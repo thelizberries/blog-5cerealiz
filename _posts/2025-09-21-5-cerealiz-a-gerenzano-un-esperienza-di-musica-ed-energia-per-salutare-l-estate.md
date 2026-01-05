@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "5 Cerealiz a Gerenzano: un evento musicale pieno di energia per salutare l'estate!"
+title: "5 Cerealiz a Gerenzano: energia per l'estate!"
 date: 2025-09-21
 author: 5Cerealiz
 description: "I 5 Cerealiz portano musica ed energia all'Oratorio di Gerenzano in un evento estivo ricco di emozioni, danza e partecipazione. Scopri com'è andata!"

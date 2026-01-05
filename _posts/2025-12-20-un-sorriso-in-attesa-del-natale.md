@@ -1,8 +1,8 @@
 ---
 layout: post
-title: '✨ Un sorriso in attesa del Natale ✨'
+title: "✨ Un sorriso in attesa del Natale ✨"
 date: 2025-12-20
-description: 'Riscopri i video del Calendario dell’Avvento dei The Lizberries: ironia, fantasia e leggerezza per regalarsi un sorriso nell’attesa del Natale.'
+description: "Riscopri i video del Calendario dell’Avvento dei The Lizberries: ironia, fantasia e leggerezza per regalarsi un sorriso nell’attesa del Natale."
 image: /assets/images/posts/immagine 5cerealiz.webp
 ---
 
