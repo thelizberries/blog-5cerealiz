@@ -58,6 +58,6 @@ Sei pronto a giocare?
 
 Non perdere tempo: entra nel Lizmetaverso, divertiti con i tuoi amici, scopri i contenuti nascosti e inizia l’anno con **musica, gioco e solidarietà**!
 
-**<a href="urlhttps://www.thelizards.it/lizberries/#showcase-musicopoliz" target="_blank" rel="noopener" style="text-decoration: underline;">👉Scarica Musicopoliz dal nostro sito e buon divertimento! 🎵🕹️</a>**
+**<a href="https://www.thelizards.it/5cerealiz/#showcase-musicopoliz" target="_blank" rel="noopener" style="text-decoration: underline;">👉 Scarica Musicopoliz dal nostro sito e buon divertimento! 🎵🕹️</a>**
 
 
