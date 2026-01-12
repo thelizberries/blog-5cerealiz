@@ -45,8 +45,7 @@ Nel gioco potrai:
 Musicopoliz è pensato per accompagnarti per tutto l’anno… e non solo
 
 ## Un gioco che sostiene progetti reali
-🎁 Il download di Musicopoliz è **completamente gratuito,** a fronte di una piccola **donazione volontaria**. 
-Con la tua offerta contribuirai a : 
+🎁 Il download del Musicopoliz è **gratuito** ed è disponibile a fronte di una **piccola donazione**.Con la tua offerta contribuirai a:
 - **MondoAbaut** -  un’organizzazione che supporta progetti educativi e culturali per bambini e ragazzi autistici, 
 - **Italia Loves Limerick** - una raccolta fondi per aiutare la **Learning Hub School di Limerick**, un centro educativo innovativo dedicato a musica e arti creative per i giovani della città dei The Cranberries.
 
