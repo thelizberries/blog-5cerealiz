@@ -3,7 +3,7 @@ layout: post
 title: "Buon anno dai 5 Cerealiz: Divertiti con Musicopoliz"
 date: 2026-01-10
 description: " I 5Crealiz augurano un buon anno e presentano il loro nuovo gioco da tavolo: Musicopoliz."
-image: /assets/images/posts/musicopoLIZ LOGO sfondo bianco .jpg .webp
+image: /assets/images/posts/musicopoliz-logo.webp
 ---
 
 ## Un 2026 a tutto ritmo: ecco le novità
