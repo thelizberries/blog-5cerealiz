@@ -368,8 +368,9 @@ main {
     border-color: transparent transparent white transparent;
 }
 
-.read-more,
-.back-to-home {
+
+/* Pulsante "Leggi tutto" con classe univoca */
+.read-more-link {
     display: inline-block;
     font-family: var(--font-handwriting);
     font-size: 1.05em;
@@ -386,6 +387,18 @@ main {
     text-transform: uppercase;
     align-self: flex-start;
     margin-top: auto;
+}
+
+.read-more-link:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 5px 5px 0 #1a1a1a;
+    background-color: #FFD54F;
+    color: #1a1a1a !important;
+}
+
+.read-more-link:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 #1a1a1a;
 }
 
 .read-more:hover,
