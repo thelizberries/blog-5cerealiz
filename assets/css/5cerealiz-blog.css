@@ -113,10 +113,10 @@ body {
 }
 
 .site-nav a {
-    font-family: var(--font-heading);
-    font-size: 1.1em;
-    font-weight: bold;
-    color: white;
+    font-family: var(--font-handwriting);
+    font-size: 1.05em;
+    font-weight: 700;
+    color: #1a1a1a;
     text-decoration: none;
     padding: 10px 20px;
     background-color: var(--accent-color);
@@ -125,12 +125,14 @@ body {
     box-shadow: var(--shadow-cartoon);
     transition: all 0.2s ease;
     text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
 .site-nav a:hover {
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-hover);
     background-color: #FFD54F;
+    color: #1a1a1a;
 }
 
 .site-nav a:active {
@@ -312,13 +314,13 @@ main {
 }
 
 .post-title a {
-    color: var(--primary-color);
+    color: #BD3D00;
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 .post-title a:hover {
-    color: var(--secondary-color);
+    color: #963000;
 }
 
 .post-meta {
@@ -485,9 +487,9 @@ main {
 .post-header .post-title {
     font-family: var(--font-heading);
     font-size: 2.5em;
-    color: var(--primary-color);
+    color: #BD3D00;
     margin-bottom: 15px;
-    text-shadow: 2px 2px 0 var(--accent-color);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
     line-height: 1.2;
 }
 
