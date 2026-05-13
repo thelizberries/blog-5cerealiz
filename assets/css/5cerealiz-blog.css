@@ -152,10 +152,10 @@ main {
 .page-title {
     font-family: var(--font-heading);
     font-size: 2.5em;
-    color: #BD3D00;
+    color: #ff662e;
     text-align: center;
     margin-bottom: 40px;
-    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.18);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.71);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -315,7 +315,7 @@ main {
 }
 
 .post-title a {
-    color: #BD3D00;
+    color: #ff662e;
     text-decoration: none;
     transition: color 0.2s ease;
 }
@@ -325,7 +325,7 @@ main {
 }
 
 .post-meta {
-    font-size: 0.85em;
+    font-size: 0.95em;
     color: #666;
     margin-bottom: 12px;
     font-weight: 600;
@@ -457,7 +457,7 @@ main {
     justify-content: center;
 }
 
-.post-card--hero .post-title {
+.post-title {
     font-family: var(--font-heading);
     font-size: 2.2em;
 }
@@ -491,7 +491,7 @@ main {
     font-family: var(--font-handwriting);
     font-size: 2.5em;
     font-weight: 700;
-    color: #BD3D00;
+    color: #ff662e;
     margin-bottom: 15px;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
     line-height: 1.2;
@@ -522,7 +522,7 @@ main {
 .post-content h4 {
     font-family: var(--font-handwriting);
     font-weight: 700;
-    color: #BD3D00;
+    color: #ff662e;
     /*margin-top: 30px; */
     margin-bottom: 15px;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
@@ -543,10 +543,10 @@ main {
 }
 
 .post-content a {
-    color: #BD3D00;
+    color: #ff662e;
     text-decoration: none;
     font-weight: bold;
-    border-bottom: 2px dotted #BD3D00;
+    border-bottom: 2px dotted #ff662e;
     transition: all 0.2s ease;
 }
 
@@ -693,7 +693,7 @@ main {
     font-family: var(--font-handwriting);
     font-weight: 700;
     font-size: 1.5em;
-    color: #BD3D00;
+    color: #ff662e;
     padding: 60px 20px;
     background-color: white;
     border: 4px solid var(--border-color);
@@ -737,14 +737,14 @@ main {
 
 .pagination-link:hover:not(.disabled),
 .pagination-number:hover {
-    background-color: #BD3D00;
+    background-color: #ff662e;
     color: white;
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 var(--border-color);
 }
 
 .pagination-number.active {
-    background-color: #BD3D00;
+    background-color: #ff662e;
     color: white;
     box-shadow: 4px 4px 0 var(--border-color);
 }
