@@ -242,14 +242,14 @@ main {
     right: 8px;
     font-family: var(--font-heading);
     font-size: 3.2em;
-    opacity: 0.11;
+    opacity: 0.15;
     line-height: 1;
     pointer-events: none;
     user-select: none;
     z-index: 0;
 }
 
-.posts-list .post-card:nth-child(2)::after { content: '\266A POP!'; color: #FF6B35; }
+.posts-list .post-card:nth-child(2)::after { content: '\266A SDENG! '; color: #FF6B35; }
 .posts-list .post-card:nth-child(3)::after { content: 'ZAP! \266B'; color: #b8930a; }
 .posts-list .post-card:nth-child(4)::after { content: 'BOOM! \2605'; color: #4ECDC4; }
 .posts-list .post-card:nth-child(5)::after { content: 'WOW! \266C'; color: #FF85A1; }
@@ -387,6 +387,7 @@ main {
     text-transform: uppercase;
     align-self: flex-start;
     margin-top: auto;
+    border-bottom: transparent !important;
 }
 
 .read-more-link:hover {
