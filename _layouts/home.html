@@ -56,12 +56,18 @@ description: "Blog ufficiale dei 5Cerealiz - La cartoon band più colorata. Noti
                 <a href="{{ '/' | relative_url }}" class="pagination-number">1</a>
             {% endif %}
 
+            {% assign page_min = paginator.page | minus: 2 %}
+            {% assign page_max = paginator.page | plus: 2 %}
+            {% assign ellipsis_before = paginator.page | minus: 3 %}
+            {% assign ellipsis_after = paginator.page | plus: 3 %}
             {% for page in (2..paginator.total_pages) %}
                 {% if page == paginator.page %}
                     <span class="pagination-number active">{{ page }}</span>
-                {% elsif page == 2 or page == paginator.total_pages or page >= paginator.page - 2 and page <= paginator.page + 2 %}
+                {% elsif page == 2 or page == paginator.total_pages %}
                     <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="pagination-number">{{ page }}</a>
-                {% elsif page == paginator.page - 3 or page == paginator.page + 3 %}
+                {% elsif page >= page_min and page <= page_max %}
+                    <a href="{{ site.paginate_path | relative_url | replace: ':num', page }}" class="pagination-number">{{ page }}</a>
+                {% elsif page == ellipsis_before or page == ellipsis_after %}
                     <span class="pagination-ellipsis">...</span>
                 {% endif %}
             {% endfor %}
