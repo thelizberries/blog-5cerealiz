@@ -20,7 +20,8 @@
     --border-color: #2C3E50;         /* Nero fumetto */
     
     /* Tipografia cartoon */
-    --font-heading: 'Comic Sans MS', 'Chalkboard SE', 'Arial Rounded MT Bold', cursive, sans-serif;
+    --font-heading: 'Bangers', 'Comic Sans MS', cursive;
+    --font-handwriting: 'Patrick Hand', cursive;
     --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     
     /* Ombre fumetto */
@@ -31,6 +32,8 @@
 body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
+    background-image: radial-gradient(circle, #c8bfa0 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
     color: var(--dark-color);
     line-height: 1.6;
     font-size: 16px;
@@ -156,50 +159,106 @@ main {
 }
 
 /* ===================================
-   POST CARDS - Stile Fumetto
+   POST CARDS - Vignette Fumetto
    =================================== */
 
 .posts-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
     margin-top: 30px;
+    align-items: start;
 }
 
+/* --- Vignetta base --- */
 .post-card {
-    width: 350px;
     background-color: white;
-    border: 4px solid var(--border-color);
-    border-radius: 20px;
+    border: 5px solid #1a1a1a;
+    border-radius: 8px;
     overflow: hidden;
-    box-shadow: var(--shadow-cartoon);
-    transition: all 0.3s ease;
+    box-shadow: 7px 7px 0 #1a1a1a;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.post-card::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 40px;
-    height: 40px;
-    background: radial-gradient(circle, var(--accent-color) 30%, transparent 31%);
-    opacity: 0.3;
-    z-index: 0;
+/* Inclinazione alternata stile tavola fumetti */
+.posts-list .post-card:nth-child(2),
+.posts-list .post-card:nth-child(4) {
+    transform: rotate(1.5deg);
+}
+
+.posts-list .post-card:nth-child(3),
+.posts-list .post-card:nth-child(5) {
+    transform: rotate(-1.5deg);
 }
 
 .post-card:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 7px 7px 0px var(--border-color);
+    transform: rotate(0deg) scale(1.04) !important;
+    box-shadow: 10px 10px 0 #1a1a1a;
+    z-index: 5;
 }
 
+/* Strisce colorate in cima alle vignette secondarie */
+.posts-list .post-card:nth-child(2)::before {
+    content: '';
+    display: block;
+    height: 8px;
+    background: #FF6B35;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+.posts-list .post-card:nth-child(3)::before {
+    content: '';
+    display: block;
+    height: 8px;
+    background: #FFC425;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+.posts-list .post-card:nth-child(4)::before {
+    content: '';
+    display: block;
+    height: 8px;
+    background: #4ECDC4;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+.posts-list .post-card:nth-child(5)::before {
+    content: '';
+    display: block;
+    height: 8px;
+    background: #FF85A1;
+    border-bottom: 3px solid #1a1a1a;
+}
+
+/* Onomatopee decorative in background — proprietà condivise */
+.posts-list .post-card:nth-child(n+2)::after {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-family: var(--font-heading);
+    font-size: 3.2em;
+    opacity: 0.11;
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+}
+
+.posts-list .post-card:nth-child(2)::after { content: '\266A POP!'; color: #FF6B35; }
+.posts-list .post-card:nth-child(3)::after { content: 'ZAP! \266B'; color: #b8930a; }
+.posts-list .post-card:nth-child(4)::after { content: 'BOOM! \2605'; color: #4ECDC4; }
+.posts-list .post-card:nth-child(5)::after { content: 'WOW! \266C'; color: #FF85A1; }
+
+/* --- Immagine nella vignetta --- */
 .post-image {
     position: relative;
     overflow: hidden;
-    height: 250px;
-    border-bottom: 3px solid var(--border-color);
+    height: 200px;
+    border-bottom: 3px solid #1a1a1a;
+    flex-shrink: 0;
 }
 
 .post-image img {
@@ -207,26 +266,49 @@ main {
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    display: block;
 }
 
 .post-card:hover .post-image img {
     transform: scale(1.05);
 }
 
-.post-content {
-    padding: 25px;
+/* Placeholder se manca l'immagine */
+.post-image-placeholder {
+    height: 200px;
+    border-bottom: 3px solid #1a1a1a;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--accent-color) 0px,
+        var(--accent-color) 10px,
+        var(--primary-color) 10px,
+        var(--primary-color) 20px
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5em;
+    color: white;
+    text-shadow: 2px 2px 0 #1a1a1a;
+    flex-shrink: 0;
+}
+
+/* --- Contenuto della vignetta --- */
+.post-card .post-content {
+    padding: 18px;
     position: relative;
     z-index: 1;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex: 1;
 }
 
 .post-title {
     font-family: var(--font-heading);
-    /*font-size: 1.6em;
-    margin-bottom: 10px;*/
-    line-height: 1.2;
+    font-size: 1.5em;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    line-height: 1.1;
 }
 
 .post-title a {
@@ -237,45 +319,75 @@ main {
 
 .post-title a:hover {
     color: var(--secondary-color);
-    text-shadow: 1px 1px 0 var(--accent-color);
 }
 
 .post-meta {
-    font-size: 0.9em;
+    font-size: 0.85em;
     color: #666;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     font-weight: 600;
+    font-family: var(--font-handwriting);
 }
 
+/* Speech bubble per l'estratto */
 .post-excerpt {
-    margin-bottom: 20px;
-    color: var(--dark-color);
-    line-height: 1.6;
+    position: relative;
+    background: white;
+    border: 2px solid #1a1a1a;
+    border-radius: 14px;
+    padding: 10px 13px;
+    margin-bottom: 14px;
+    margin-top: 6px;
+    font-family: var(--font-handwriting);
+    font-size: 0.95em;
+    line-height: 1.45;
+    color: #1a1a1a;
+    z-index: 1;
+}
+
+.post-excerpt::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 18px;
+    border-width: 0 7px 14px 7px;
+    border-style: solid;
+    border-color: transparent transparent #1a1a1a transparent;
+}
+
+.post-excerpt::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    border-width: 0 5px 10px 5px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
 }
 
 .read-more,
 .back-to-home {
     display: inline-block;
     font-family: var(--font-heading);
-    font-weight: bold;
+    font-size: 1em;
+    letter-spacing: 0.5px;
     color: white !important;
     background-color: var(--primary-color);
-    padding: 10px 25px;
-    border: 3px solid var(--border-color);
-    border-radius: 25px;
+    padding: 8px 20px;
+    border: 3px solid #1a1a1a;
+    border-radius: 6px;
     text-decoration: none;
-    box-shadow: 3px 3px 0 var(--border-color);
+    box-shadow: 3px 3px 0 #1a1a1a;
     transition: all 0.2s ease;
     text-transform: uppercase;
-    font-size: 0.9em;
-    /*margin-top: auto; */
-    text-align: right;
+    align-self: flex-start;
+    margin-top: auto;
 }
 
 .read-more:hover,
 .back-to-home:hover {
     transform: translate(-2px, -2px);
-    box-shadow: 5px 5px 0 var(--border-color);
+    box-shadow: 5px 5px 0 #1a1a1a;
     background-color: var(--secondary-color);
     color: white !important;
 }
@@ -283,7 +395,70 @@ main {
 .read-more:active,
 .back-to-home:active {
     transform: translate(1px, 1px);
-    box-shadow: 2px 2px 0 var(--border-color);
+    box-shadow: 2px 2px 0 #1a1a1a;
+}
+
+/* --- Hero card (prima vignetta — splash page) --- */
+.post-card--hero {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    transform: none !important;
+    min-height: 320px;
+    border-radius: 10px;
+}
+
+.post-card--hero::after {
+    content: 'NUOVO! \2605';
+    position: absolute;
+    top: 22px;
+    right: -6px;
+    background: var(--accent-color);
+    color: #1a1a1a;
+    font-family: var(--font-heading);
+    font-size: 1.1em;
+    letter-spacing: 1px;
+    padding: 5px 14px;
+    border: 3px solid #1a1a1a;
+    border-radius: 4px;
+    box-shadow: 3px 3px 0 #1a1a1a;
+    transform: rotate(-14deg);
+    z-index: 10;
+    opacity: 1;
+    pointer-events: none;
+    user-select: none;
+}
+
+.post-card--hero .post-image {
+    width: 45%;
+    flex-shrink: 0;
+    height: auto;
+    min-height: 320px;
+    border-bottom: none;
+    border-right: 5px solid #1a1a1a;
+}
+
+.post-card--hero .post-image-placeholder {
+    width: 45%;
+    flex-shrink: 0;
+    height: auto;
+    min-height: 320px;
+    border-bottom: none;
+    border-right: 5px solid #1a1a1a;
+    font-size: 5em;
+}
+
+.post-card--hero .post-content {
+    flex: 1;
+    padding: 35px;
+    justify-content: center;
+}
+
+.post-card--hero .post-title {
+    font-size: 2.2em;
+}
+
+.post-card--hero .post-excerpt {
+    font-size: 1.05em;
 }
 
 /* ===================================
@@ -578,6 +753,16 @@ main {
    RESPONSIVE
    =================================== */
 
+@media (max-width: 1100px) {
+    .posts-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .post-card--hero {
+        grid-column: 1 / -1;
+    }
+}
+
 @media (max-width: 768px) {
     .site-logo h1 {
         font-size: 2em;
@@ -596,9 +781,36 @@ main {
     .site-nav a {
         text-align: center;
     }
-    
+
     .posts-list {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Hero diventa verticale su tablet/mobile */
+    .post-card--hero {
+        flex-direction: column;
+        min-height: auto;
+        grid-column: 1 / -1;
+    }
+
+    .post-card--hero .post-image,
+    .post-card--hero .post-image-placeholder {
+        width: 100%;
+        min-height: 220px;
+        border-right: none;
+        border-bottom: 5px solid #1a1a1a;
+    }
+
+    .post-card--hero .post-content {
+        padding: 20px;
+    }
+
+    /* Disabilita rotazioni su tablet/mobile */
+    .posts-list .post-card:nth-child(2),
+    .posts-list .post-card:nth-child(3),
+    .posts-list .post-card:nth-child(4),
+    .posts-list .post-card:nth-child(5) {
+        transform: none;
     }
     
     .post {
@@ -622,8 +834,13 @@ main {
     .site-logo .tagline {
         font-size: 1em;
     }
-    
-    .post-image {
-        height: 200px;
+
+    .posts-list {
+        grid-template-columns: 1fr;
+    }
+
+    .post-image,
+    .post-image-placeholder {
+        height: 180px;
     }
 }

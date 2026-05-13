@@ -10,11 +10,13 @@ description: "Blog ufficiale dei 5Cerealiz - La cartoon band più colorata. Noti
     {% if paginator.posts.size > 0 %}
         <div class="posts-list">
             {% for post in paginator.posts %}
-                <article class="post-card">
+                <article class="post-card{% if forloop.first %} post-card--hero{% endif %}">
                     {% if post.image %}
                         <div class="post-image">
                             <img src="{{ post.image | relative_url }}" alt="{{ post.title }}">
                         </div>
+                    {% else %}
+                        <div class="post-image-placeholder">&#9835;</div>
                     {% endif %}
                     <div class="post-content">
                         <h2 class="post-title">
