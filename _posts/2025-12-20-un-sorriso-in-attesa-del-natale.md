@@ -25,4 +25,4 @@ Il tempo che ci conduce al Natale è spesso carico di stress: corse, impegni e s
 
 Se anche solo uno di questi video riuscirà a strappare un sorriso, allora avremo raggiunto il nostro obiettivo. Perché un cuore che sorride è un cuore più aperto, più caldo e più pronto ad accogliere gli altri.
 
-**<a href="https://www.facebook.com/search/top?q=5cerealiz&locale=it_IT="_blank" rel="noopener" style="text-decoration: underline;">Seguici sui social</a>**
+**<a href="https://www.facebook.com/search/top?q=5cerealiz&locale=it_IT=" target="_blank" rel="noopener" style="text-decoration: underline;">Seguici sui social</a>**
