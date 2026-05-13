@@ -152,10 +152,10 @@ main {
 .page-title {
     font-family: var(--font-heading);
     font-size: 2.5em;
-    color: var(--primary-color);
+    color: #BD3D00;
     text-align: center;
     margin-bottom: 40px;
-    text-shadow: 2px 2px 0 var(--border-color);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.18);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
@@ -306,11 +306,12 @@ main {
 }
 
 .post-title {
-    font-family: var(--font-heading);
-    font-size: 1.5em;
-    letter-spacing: 0.5px;
+    font-family: var(--font-handwriting);
+    font-size: 1.4em;
+    font-weight: 700;
+    letter-spacing: 0.2px;
     margin-bottom: 8px;
-    line-height: 1.1;
+    line-height: 1.2;
 }
 
 .post-title a {
@@ -370,14 +371,15 @@ main {
 .read-more,
 .back-to-home {
     display: inline-block;
-    font-family: var(--font-heading);
-    font-size: 1em;
-    letter-spacing: 0.5px;
-    color: white !important;
-    background-color: var(--primary-color);
+    font-family: var(--font-handwriting);
+    font-size: 1.05em;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: #1a1a1a !important;
+    background-color: var(--accent-color);
     padding: 8px 20px;
     border: 3px solid #1a1a1a;
-    border-radius: 6px;
+    border-radius: 15px;
     text-decoration: none;
     box-shadow: 3px 3px 0 #1a1a1a;
     transition: all 0.2s ease;
@@ -390,8 +392,8 @@ main {
 .back-to-home:hover {
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 #1a1a1a;
-    background-color: var(--secondary-color);
-    color: white !important;
+    background-color: #FFD54F;
+    color: #1a1a1a !important;
 }
 
 .read-more:active,
@@ -456,6 +458,7 @@ main {
 }
 
 .post-card--hero .post-title {
+    font-family: var(--font-heading);
     font-size: 2.2em;
 }
 
@@ -485,8 +488,9 @@ main {
 }
 
 .post-header .post-title {
-    font-family: var(--font-heading);
+    font-family: var(--font-handwriting);
     font-size: 2.5em;
+    font-weight: 700;
     color: #BD3D00;
     margin-bottom: 15px;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
@@ -516,11 +520,12 @@ main {
 .post-content h2,
 .post-content h3,
 .post-content h4 {
-    font-family: var(--font-heading);
-    color: var(--primary-color);
+    font-family: var(--font-handwriting);
+    font-weight: 700;
+    color: #BD3D00;
     /*margin-top: 30px; */
     margin-bottom: 15px;
-    text-shadow: 1px 1px 0 var(--accent-color);
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.12);
 }
 
 .post-content h2 {
@@ -538,15 +543,15 @@ main {
 }
 
 .post-content a {
-    color: var(--primary-color);
+    color: #BD3D00;
     text-decoration: none;
     font-weight: bold;
-    border-bottom: 2px dotted var(--primary-color);
+    border-bottom: 2px dotted #BD3D00;
     transition: all 0.2s ease;
 }
 
 .post-content a:hover {
-    color: var(--secondary-color);
+    color: #963000;
     border-bottom-style: solid;
 }
 
@@ -589,23 +594,26 @@ main {
 
 .back-to-home {
     display: inline-block;
-    font-family: var(--font-heading);
-    font-weight: bold;
-    color: white;
-    background-color: var(--primary-color);
-    padding: 12px 30px;
-    border: 3px solid var(--border-color);
-    border-radius: 25px;
+    font-family: var(--font-handwriting);
+    font-size: 1.05em;
+    font-weight: 700;
+    color: #1a1a1a;
+    background-color: var(--accent-color);
+    padding: 10px 25px;
+    border: 3px solid #1a1a1a;
+    border-radius: 15px;
     text-decoration: none;
     box-shadow: var(--shadow-cartoon);
     transition: all 0.2s ease;
     text-transform: uppercase;
+    letter-spacing: 0.3px;
 }
 
 .back-to-home:hover {
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-hover);
-    background-color: var(--secondary-color);
+    background-color: #FFD54F;
+    color: #1a1a1a;
 }
 
 /* ===================================
@@ -625,7 +633,8 @@ main {
 }
 
 .footer-content p {
-    font-family: var(--font-heading);
+    font-family: var(--font-handwriting);
+    font-weight: 700;
     font-size: 1.1em;
     margin-bottom: 15px;
 }
@@ -639,8 +648,8 @@ main {
 .footer-links a {
     color: var(--accent-color);
     text-decoration: none;
-    font-weight: bold;
-    font-family: var(--font-heading);
+    font-weight: 700;
+    font-family: var(--font-handwriting);
     padding: 8px 20px;
     border: 2px solid var(--accent-color);
     border-radius: 15px;
@@ -681,9 +690,10 @@ main {
 
 .no-posts {
     text-align: center;
-    font-family: var(--font-heading);
+    font-family: var(--font-handwriting);
+    font-weight: 700;
     font-size: 1.5em;
-    color: var(--primary-color);
+    color: #BD3D00;
     padding: 60px 20px;
     background-color: white;
     border: 4px solid var(--border-color);
@@ -720,21 +730,21 @@ main {
     color: var(--dark-color);
     text-decoration: none;
     transition: all 0.2s ease;
-    font-weight: bold;
-    font-family: var(--font-heading);
+    font-weight: 700;
+    font-family: var(--font-handwriting);
     box-shadow: 3px 3px 0 var(--border-color);
 }
 
 .pagination-link:hover:not(.disabled),
 .pagination-number:hover {
-    background-color: var(--primary-color);
+    background-color: #BD3D00;
     color: white;
     transform: translate(-2px, -2px);
     box-shadow: 5px 5px 0 var(--border-color);
 }
 
 .pagination-number.active {
-    background-color: var(--primary-color);
+    background-color: #BD3D00;
     color: white;
     box-shadow: 4px 4px 0 var(--border-color);
 }
@@ -747,8 +757,8 @@ main {
 .pagination-ellipsis {
     color: var(--dark-color);
     padding: 0 10px;
-    font-weight: bold;
-    font-family: var(--font-heading);
+    font-weight: 700;
+    font-family: var(--font-handwriting);
 }
 
 /* ===================================
