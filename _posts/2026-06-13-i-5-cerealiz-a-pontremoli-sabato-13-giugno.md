@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "I 5 Cerealiz a Pontremoli – Sabato 13 Giugno "
+title: "I 5 Cerealiz a Pontremoli – Sabato 13 Giugno"
 date: 2026-06-13
 description: "I 5 Cerealiz vi aspettano sabato 13 giugno a Pontremoli per uno spettacolo travolgente tra sigle dei cartoni animati. Non mancate!"
 ---
