@@ -57,6 +57,13 @@ Usa [Prose.io](http://prose.io/#thelizberries/blog-5cerealiz) per modificare pos
 
 ## ⚙️ Automazioni
 
+### Pubblicazione dei Post Programmati
+- I post con data futura restano nascosti fino alla data indicata, nel fuso `Europe/Rome`.
+- Il workflow **Publish scheduled posts** richiede una ricostruzione di GitHub Pages ogni ora, al minuto 37, senza modificare i post.
+- La pubblicazione avviene alla successiva build riuscita, non necessariamente a mezzanotte: GitHub Actions può ritardare le esecuzioni.
+- Il workflow deve essere presente e attivo sul ramo principale; GitHub Pages deve pubblicare dal ramo `main`.
+- Se un post non compare, controlla **Actions** e avvia il workflow con **Run workflow**. Nei repository pubblici, dopo 60 giorni senza attività, GitHub può disabilitare la pianificazione: in quel caso occorre riattivarla.
+
 ### Conversione Immagini
 - Upload immagine (JPG/PNG) → automaticamente convertita in WebP (~30-40KB)
 - Ridimensionata a max 900x600px

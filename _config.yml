@@ -12,6 +12,7 @@ author:
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
 timezone: Europe/Rome
+future: false
 
 # Paginazione
 paginate: 5

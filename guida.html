@@ -292,7 +292,7 @@
                     </div>
                     <div class="step">
                         <h3>4️⃣ Seleziona la data di pubblicazione</h3>
-                        <p>⏰ Puoi programmare post futuri! Il post verrà pubblicato automaticamente il giorno indicato.</p>
+                        <p>⏰ Puoi programmare post futuri! Dal giorno indicato (fuso orario italiano), il post viene pubblicato alla successiva ricostruzione oraria del blog. Non viene pubblicato necessariamente a mezzanotte: GitHub Actions può eseguire le ricostruzioni con ritardo.</p>
                     </div>
                     <div class="step">
                         <h3>5️⃣ Inserisci la descrizione breve (Meta Description)</h3>
@@ -528,7 +528,8 @@ Continua con il resto del contenuto...</code></pre>
                 </ol>
 
                 <h3>Posso programmare post per il futuro?</h3>
-                <p>Sì! Puoi impostare una data futura nel front matter del post (es: <code>date: 2025-12-25</code>). Il post verrà pubblicato automaticamente il giorno indicato.</p>
+                <p>Sì! Puoi impostare una data futura nel front matter del post (es: <code>date: 2026-12-25</code>). Fino a quella data, il post resta nel repository GitHub ma non è visibile sul blog. Dal giorno indicato (fuso <code>Europe/Rome</code>), viene pubblicato alla successiva ricostruzione oraria, con possibili ritardi di GitHub Actions.</p>
+                <p>La programmazione richiede il workflow attivo sul ramo principale e GitHub Pages configurato per pubblicare dal ramo <code>main</code>. Se un post non compare, controlla la scheda <strong>Actions</strong> e avvia manualmente <strong>Publish scheduled posts</strong>. Nei repository pubblici GitHub può disabilitare i workflow programmati dopo 60 giorni senza attività: in quel caso occorre riattivarli.</p>
 
                 <h3>Come ottengo la password per pubblicare?</h3>
                 <p>La password è <strong>riservata ai membri del team</strong> che devono creare post. Contatta il team tecnico per ottenerla.</p>
